@@ -46,13 +46,6 @@
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Сегодня" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FF-bi-gkQ">
-                                        <rect key="frame" x="139" y="34" width="88" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="BloggerSans-Medium" family="Blogger Sans" pointSize="24"/>
-                                        <color key="textColor" red="0.21176470589999999" green="0.49019607840000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Все дни" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPE-ih-0rM">
                                         <rect key="frame" x="325" y="36" width="0.0" height="24"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
@@ -60,6 +53,21 @@
                                         <color key="textColor" red="0.21176470589999999" green="0.49019607840000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qqc-n1-5D7" userLabel="Today Background">
+                                        <rect key="frame" x="138" y="30" width="101" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Сегодня" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FF-bi-gkQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="101" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <fontDescription key="fontDescription" name="BloggerSans-Medium" family="Blogger Sans" pointSize="24"/>
+                                                <color key="textColor" red="0.21176470589999999" green="0.49019607840000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -100,6 +108,7 @@
                         <outlet property="allDaysButton" destination="KsS-nW-2Gf" id="bFv-yx-3Pk"/>
                         <outlet property="allDaysLabel" destination="sPE-ih-0rM" id="pUJ-2B-oGH"/>
                         <outlet property="allDaysScrollView" destination="rAV-cJ-8vI" id="U9k-Xl-3QV"/>
+                        <outlet property="todayBackground" destination="Qqc-n1-5D7" id="2jy-zu-ujt"/>
                         <outlet property="todayButton" destination="JzE-Pc-po7" id="ZLE-d0-ekd"/>
                         <outlet property="todayLabel" destination="8FF-bi-gkQ" id="Wby-r4-IT0"/>
                         <outlet property="todayScrollView" destination="QKl-Cn-dJ7" id="vcg-qO-OLC"/>

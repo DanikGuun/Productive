@@ -33,11 +33,15 @@ class MenuElement{
 }
 
 class TodayButton: MenuElement{
-    override init(){super.init()}
+    override init(){
+        self.background = UIView()
+        super.init()
+    }
     
-    override init(button: UIImageView, label: UILabel, scrollView: UIScrollView, id: Int, isSelected: Bool) {
+    init(button: UIImageView, label: UILabel, scrollView: UIScrollView, id: Int, isSelected: Bool, background: UIView) {
+        self.background = background
         super.init(button: button, label: label, scrollView: scrollView, id: id, isSelected: isSelected)
     }
     
-    let background
+    let background: UIView
 }
