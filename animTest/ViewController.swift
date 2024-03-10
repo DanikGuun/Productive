@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         allDaysButton.isUserInteractionEnabled = true
         
         todayMenu = TodayButton(button: todayButton, label: todayLabel, scrollView: todayScrollView, id: 0, isSelected: false, background: todayChangeButton)
-        allDaysMenu = MenuElement(button: allDaysButton, label: allDaysLabel, scrollView: allDaysScrollView, id: 1, isSelected: false)
+        allDaysMenu = MenuElement(button: allDaysButton, label: allDaysLabel, scrollView: allDaysScrollView, id: 1, isSelected: false, labelSize: CGSize(width: 100, height: 30))
         
         menuButtons.append(todayMenu)
         menuButtons.append(allDaysMenu)
@@ -68,7 +68,6 @@ class ViewController: UIViewController {
         if todayButton.currentDay == .today{
             UIView.animate(withDuration: 0.5, animations: {
                 todayButton.label.center.y += labelHeight
-                print(labelHeight)
                 todayButton.label.frame.size = CGSize(width: todayButton.label.frame.width, height: 0)
             }, completion: { _ in
                 todayButton.label.center.y -= labelHeight
@@ -101,13 +100,13 @@ class ViewController: UIViewController {
     private func changeScrollView(currentScrollView: UIScrollView, targetScrollView: UIScrollView, currentIndex: Int, targetIndex: Int){
         if currentIndex  < targetIndex{ //окошко влево
             UIScrollView.animate(withDuration: 0.5, animations: {
-                currentScrollView.center.x -= 400 //поменять на ширину вьюхи
+                currentScrollView.center.x -= currentScrollView.frame.width //поменять на ширину вьюхи
                 targetScrollView.center.x = 0
             })
         }
         else{
             UIScrollView.animate(withDuration: 0.5, animations: {
-                currentScrollView.center.x += 400 //поменять на ширину вьюхи
+                currentScrollView.center.x += currentScrollView.frame.width //поменять на ширину вьюхи
                 targetScrollView.center.x = 0
             })
         }
@@ -119,34 +118,37 @@ class ViewController: UIViewController {
         }
     }
     private func menuButtonEnabledAnimate(_ menuElement: MenuElement){
+        
         if menuElement.isSelected == true {return}
-        func anim(_ view: UIView){
+        
+        func anim(_ view: UIView, _ size: CGSize){
             UIView.animate(withDuration: 0.5, animations: {
                 menuElement.button.center.x -= 50
                 menuElement.button.tintColor = UIColor(red: 0.21, green: 0.49, blue: 0.8, alpha: 1)
-                view.frame.size = CGSize(width: 100, height: 30)
+                view.frame.size = size
                 view.center.x -= 50
             })
         }
         
-        if menuElement is TodayButton{ anim((menuElement as! TodayButton).background)}
-        else{anim(menuElement.label) }
+        if menuElement is TodayButton{ anim((menuElement as! TodayButton).background, (menuElement as! TodayButton).backgeoundSize)}
+        else{anim(menuElement.label, menuElement.labelSize) }
         
         menuElement.isSelected = true
         disableMenuButtons(without: menuElement.button)
     }
     private func menuButtonDisabledAnimate(_ menuElement: MenuElement){
-        func anim(_ view: UIView){
+        func anim(_ view: UIView, _ size: CGSize){
+            
             UIView.animate(withDuration: 0.5, animations: {
                 menuElement.button.center.x += 50
                 menuElement.button.tintColor = UIColor(red: 0.67, green: 0.67, blue: 0.67, alpha: 1)
-                view.frame.size = CGSize(width: 0, height: 30)
+                view.frame.size = CGSize(width: 0, height: size.height)
                 view.center.x += 50
             })
         }
         
-        if menuElement is TodayButton{ anim((menuElement as! TodayButton).background)}
-        else{anim(menuElement.label) }
+        if menuElement is TodayButton{ anim((menuElement as! TodayButton).background, (menuElement as! TodayButton).backgeoundSize)}
+        else{anim(menuElement.label, menuElement.labelSize) }
         
         menuElement.isSelected = false
     }

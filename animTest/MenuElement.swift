@@ -15,14 +15,16 @@ class MenuElement{
         self.scrollView = UIScrollView()
         self.id = -1
         self.isSelected = false
+        self.labelSize = CGSize(width: 0, height: 0)
     }
     
-    init(button: UIImageView, label: UILabel, scrollView: UIScrollView, id: Int, isSelected: Bool) {
+    init(button: UIImageView, label: UILabel, scrollView: UIScrollView, id: Int, isSelected: Bool, labelSize: CGSize? = nil) {
         self.button = button
         self.label = label
         self.scrollView = scrollView
         self.id = id
         self.isSelected = isSelected
+        self.labelSize = labelSize ?? label.frame.size //чтобы указать размер, если в SB элемент скрыт
     }
     
     let button: UIImageView
@@ -30,23 +32,27 @@ class MenuElement{
     let scrollView: UIScrollView
     let id: Int
     var isSelected: Bool
+    let labelSize: CGSize //чтобы после анимаций возвращать в исходный размер
 }
 
 class TodayButton: MenuElement{
     override init(){
-        self.background = UIView()
         self.currentDay = .today
+        self.background = UIView()
+        self.backgeoundSize = CGSize(width: 0, height: 0)
         super.init()
     }
     
-    init(button: UIImageView, label: UILabel, scrollView: UIScrollView, id: Int, isSelected: Bool, background: UIView) {
-        self.background = background
+    init(button: UIImageView, label: UILabel, scrollView: UIScrollView, id: Int, isSelected: Bool, background: UIView, backgroundSize: CGSize? = nil) {
         self.currentDay = .today
+        self.background = background
+        self.backgeoundSize = backgroundSize ?? background.frame.size
         super.init(button: button, label: label, scrollView: scrollView, id: id, isSelected: isSelected)
     }
     
-    var currentDay: CurrentDay;
+    var currentDay: CurrentDay
     let background: UIView
+    let backgeoundSize: CGSize
 }
 enum CurrentDay{
     case today

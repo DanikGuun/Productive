@@ -54,11 +54,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qqc-n1-5D7" userLabel="Today Background">
-                                        <rect key="frame" x="138" y="26" width="111" height="37"/>
+                                        <rect key="frame" x="138" y="29" width="108" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Сегодня" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FF-bi-gkQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="111" height="37"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="108" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <fontDescription key="fontDescription" name="BloggerSans-Medium" family="Blogger Sans" pointSize="24"/>
                                                 <color key="textColor" red="0.21176470589999999" green="0.49019607840000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -102,6 +102,13 @@
                                 <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Oj1-KK-M2i"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="Vgr-SZ-Zcs"/>
+                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2j2-zq-odL" userLabel="TommorowScroll">
+                                <rect key="frame" x="400" y="132" width="393" height="627"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" systemColor="systemMintColor"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="caE-g7-OrQ"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="mjN-Ea-MZ1"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
