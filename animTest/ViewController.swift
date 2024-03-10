@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet var todayButton: UIImageView!
     @IBOutlet var todayLabel: UILabel!
     @IBOutlet var todayScrollView: UIScrollView!
-    @IBOutlet var todayBackground: UIView!
+    @IBOutlet var todayChangeButton: UIView!
     @IBOutlet var allDaysButton: UIImageView!
     @IBOutlet var allDaysLabel: UILabel!
     @IBOutlet var allDaysScrollView: UIScrollView!
@@ -26,22 +26,25 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        todayBackground.layer.borderColor = CGColor(red: 0.21, green: 0.49, blue: 0.8, alpha: 1)
-        todayBackground.layer.borderWidth = 2
-        todayBackground.layer.cornerRadius = 5
-        todayBackground.layer.shadowColor = CGColor(red: 0.42, green: 0.42, blue: 0.42, alpha: 1)
-        todayBackground.layer.shadowOpacity = 0.7
-        todayBackground.layer.shadowOffset = CGSize(width: 0, height: 0)
-        todayBackground.layer.shadowRadius = CGFloat(1)
+        todayChangeButton.layer.borderColor = CGColor(red: 0.21, green: 0.49, blue: 0.8, alpha: 1)
+        todayChangeButton.layer.borderWidth = 2
+        todayChangeButton.layer.cornerRadius = 5
+        todayChangeButton.layer.shadowColor = CGColor(red: 0.42, green: 0.42, blue: 0.42, alpha: 1)
+        todayChangeButton.layer.shadowOpacity = 0.7
+        todayChangeButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        todayChangeButton.layer.shadowRadius = CGFloat(1)
         
         let todayTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(todayButtonPressed(_:)))
         todayButton.addGestureRecognizer(todayTapRecogniser)
         todayButton.isUserInteractionEnabled = true
+        let todayChangeTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(todayChangeButtonPressed(_:)))
+        todayChangeButton.addGestureRecognizer(todayChangeTapRecogniser)
+        todayChangeButton.isUserInteractionEnabled = true
         let allDayTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(allDayButtonPressed(_:)))
         allDaysButton.addGestureRecognizer(allDayTapRecogniser)
         allDaysButton.isUserInteractionEnabled = true
         
-        todayMenu = TodayButton(button: todayButton, label: todayLabel, scrollView: todayScrollView, id: 0, isSelected: false, background: todayBackground)
+        todayMenu = TodayButton(button: todayButton, label: todayLabel, scrollView: todayScrollView, id: 0, isSelected: false, background: todayChangeButton)
         allDaysMenu = MenuElement(button: allDaysButton, label: allDaysLabel, scrollView: allDaysScrollView, id: 1, isSelected: false)
         
         menuButtons.append(todayMenu)
@@ -57,6 +60,38 @@ class ViewController: UIViewController {
         menuButtonEnabledAnimate(getMenuElementByButton(tappedImage))
     }
     
+    @objc
+    private func todayChangeButtonPressed(_ sender: UIGestureRecognizer){
+        var todayButton: TodayButton = getMenuElementByButton(sender.view!)
+        let labelHeight = todayButton.label.frame.height //чтобы помнить высоту после обнуления
+        
+        if todayButton.currentDay == .today{
+            UIView.animate(withDuration: 0.5, animations: {
+                todayButton.label.center.y += labelHeight
+                print(labelHeight)
+                todayButton.label.frame.size = CGSize(width: todayButton.label.frame.width, height: 0)
+            }, completion: { _ in
+                todayButton.label.center.y -= labelHeight
+                todayButton.label.text = "Завтра"
+                UIView.animate(withDuration: 0.5, animations: {
+                    todayButton.label.frame.size = CGSize(width: todayButton.label.frame.width, height: labelHeight)
+                })
+            })
+        }
+        else{
+            UIView.animate(withDuration: 0.5, animations: {
+                todayButton.label.frame.size = CGSize(width: todayButton.label.frame.width, height: 0)
+            }, completion: { _ in
+                todayButton.label.center.y += labelHeight
+                todayButton.label.text = "Сегодня"
+                UIView.animate(withDuration: 0.5, animations: {
+                    todayButton.label.center.y -= labelHeight
+                    todayButton.label.frame.size = CGSize(width: todayButton.label.frame.width, height: labelHeight)
+                })
+            })
+        }
+        todayButton.currentDay = todayButton.currentDay == CurrentDay.today ? CurrentDay.tommorow : CurrentDay.today//инвертируем
+    }
     @objc
     private func allDayButtonPressed(_ sender: UITapGestureRecognizer){
         let tappedImage = sender.view as! UIImageView
@@ -122,7 +157,13 @@ class ViewController: UIViewController {
         print("не найден")
         return MenuElement()
     }
-    
+    func getMenuElementByButton(_ button: UIView) -> TodayButton{
+        for element in menuButtons{
+            if let elem  = element as? TodayButton, elem.background == button {return elem}
+        }
+        print("Не найден!")
+        return TodayButton()
+    }
 }
     
 

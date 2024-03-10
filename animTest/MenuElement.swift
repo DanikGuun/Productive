@@ -35,13 +35,20 @@ class MenuElement{
 class TodayButton: MenuElement{
     override init(){
         self.background = UIView()
+        self.currentDay = .today
         super.init()
     }
     
     init(button: UIImageView, label: UILabel, scrollView: UIScrollView, id: Int, isSelected: Bool, background: UIView) {
         self.background = background
+        self.currentDay = .today
         super.init(button: button, label: label, scrollView: scrollView, id: id, isSelected: isSelected)
     }
     
+    var currentDay: CurrentDay;
     let background: UIView
+}
+enum CurrentDay{
+    case today
+    case tommorow
 }
