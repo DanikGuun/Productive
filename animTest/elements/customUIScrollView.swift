@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class customUIScrollView: UIScrollView{
+class CustomUIScrollView: UIScrollView{
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)

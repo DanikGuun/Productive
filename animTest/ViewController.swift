@@ -11,14 +11,14 @@ class ViewController: UIViewController {
 
     @IBOutlet var todayButton: UIImageView!
     @IBOutlet var todayLabel: UILabel!
-    @IBOutlet var todayScrollView: UIScrollView!
+    @IBOutlet var todayScrollView: CustomUIScrollView!
     @IBOutlet var todayParentView: UIView!
-    @IBOutlet var tomorrowScrollView: UIScrollView!
+    @IBOutlet var tomorrowScrollView: CustomUIScrollView!
     @IBOutlet var tomorrowParentView: UIView!
     @IBOutlet var todayChangeButton: UIView!
     @IBOutlet var allDaysButton: UIImageView!
     @IBOutlet var allDaysLabel: UILabel!
-    @IBOutlet var allDaysScrollView: UIScrollView!
+    @IBOutlet var allDaysScrollView: CustomUIScrollView!
     @IBOutlet var allDaysParentView: UIView!
  
     var todayMenu: TodayButton = TodayButton()
@@ -76,7 +76,7 @@ class ViewController: UIViewController {
     
     @objc
     private func todayChangeButtonPressed(_ sender: UIGestureRecognizer){
-        var todayButton: TodayButton = getMenuElementByButton(sender.view!)
+        let todayButton: TodayButton = getMenuElementByButton(sender.view!)
         let labelHeight = todayButton.label.frame.height //чтобы помнить высоту после обнуления
         
         if todayButton.currentDay == .today{
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
         else{
             UIView.animate(withDuration: 0.5, animations: {
                 todayButton.label.frame.size = CGSize(width: todayButton.label.frame.width, height: 0)
-            }, completion: { [self] _ in
+            }, completion: { _ in
                 todayButton.label.center.y += labelHeight
                 todayButton.label.text = "Сегодня"
                 UIView.animate(withDuration: 0.5, animations: {

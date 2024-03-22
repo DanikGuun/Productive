@@ -82,7 +82,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JWt-hI-ese" userLabel="Today Parrent" customClass="customUIScrollView" customModule="animTest" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JWt-hI-ese" userLabel="Today Parrent" customClass="CustomUIScrollView" customModule="animTest" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="96" width="393" height="661"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
