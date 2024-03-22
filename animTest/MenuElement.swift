@@ -40,19 +40,22 @@ class TodayButton: MenuElement{
         self.currentDay = .today
         self.background = UIView()
         self.backgeoundSize = CGSize(width: 0, height: 0)
+        self.tomorrowScrollView = UIScrollView()
         super.init()
     }
     
-    init(button: UIImageView, label: UILabel, scrollView: UIScrollView, id: Int, isSelected: Bool, background: UIView, backgroundSize: CGSize? = nil) {
+    init(button: UIImageView, label: UILabel, todayScrollView: UIScrollView, tomorrowScrollView: UIScrollView, id: Int, isSelected: Bool, background: UIView, backgroundSize: CGSize? = nil) {
         self.currentDay = .today
         self.background = background
         self.backgeoundSize = backgroundSize ?? background.frame.size
-        super.init(button: button, label: label, scrollView: scrollView, id: id, isSelected: isSelected)
+        self.tomorrowScrollView = tomorrowScrollView
+        super.init(button: button, label: label, scrollView: todayScrollView, id: id, isSelected: isSelected)
     }
     
     var currentDay: CurrentDay
     let background: UIView
     let backgeoundSize: CGSize
+    let tomorrowScrollView: UIScrollView
 }
 enum CurrentDay{
     case today

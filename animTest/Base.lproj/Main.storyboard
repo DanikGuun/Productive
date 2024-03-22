@@ -82,34 +82,69 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Планы на сегодня" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvR-77-AVn">
-                                <rect key="frame" x="16" y="103" width="292" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AFuturaRoundBold" family="a_FuturaRound" pointSize="24"/>
-                                <color key="textColor" red="0.21176470588235294" green="0.49019607843137253" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rAV-cJ-8vI" userLabel="All Days ScrollView">
-                                <rect key="frame" x="400" y="132" width="393" height="627"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JWt-hI-ese" userLabel="Today Parrent" customClass="customUIScrollView" customModule="animTest" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="96" width="393" height="661"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" systemColor="systemMintColor"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="KMf-HS-Z0K"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="ZEr-7d-0jm"/>
-                            </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKl-Cn-dJ7" userLabel="Today ScrollView">
-                                <rect key="frame" x="0.0" y="132" width="393" height="627"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Планы на сегодня" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvR-77-AVn">
+                                        <rect key="frame" x="20" y="0.0" width="337" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AFuturaRoundBold" family="a_FuturaRound" pointSize="24"/>
+                                        <color key="textColor" red="0.21176470588235294" green="0.49019607843137253" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKl-Cn-dJ7" userLabel="Today ScrollView">
+                                        <rect key="frame" x="0.0" y="29" width="393" height="632"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="Oj1-KK-M2i"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="Vgr-SZ-Zcs"/>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSl-dW-Lzl" userLabel="Tomorrow Parrent" customClass="customUIScrollView" customModule="animTest" customModuleProvider="target">
+                                <rect key="frame" x="393" y="96" width="393" height="663"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="Oj1-KK-M2i"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="Vgr-SZ-Zcs"/>
-                            </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2j2-zq-odL" userLabel="TommorowScroll">
-                                <rect key="frame" x="400" y="132" width="393" height="627"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Планы на завтра" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2j-e9-Coc">
+                                        <rect key="frame" x="20" y="0.0" width="337" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AFuturaRoundBold" family="a_FuturaRound" pointSize="24"/>
+                                        <color key="textColor" red="0.21176470589999999" green="0.49019607840000001" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2j2-zq-odL" userLabel="TommorowScroll">
+                                        <rect key="frame" x="0.0" y="29" width="393" height="632"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" systemColor="systemMintColor"/>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="caE-g7-OrQ"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="mjN-Ea-MZ1"/>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j1K-oU-bZG" userLabel="All Days Parrent" customClass="customUIScrollView" customModule="animTest" customModuleProvider="target">
+                                <rect key="frame" x="394" y="96" width="393" height="663"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" systemColor="systemMintColor"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="caE-g7-OrQ"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="mjN-Ea-MZ1"/>
-                            </scrollView>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Всё время" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3S-O9-DrG">
+                                        <rect key="frame" x="20" y="0.0" width="337" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AFuturaRoundBold" family="a_FuturaRound" pointSize="24"/>
+                                        <color key="textColor" red="0.21176470589999999" green="0.49019607840000001" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rAV-cJ-8vI" userLabel="All Days ScrollView">
+                                        <rect key="frame" x="0.0" y="29" width="393" height="632"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="KMf-HS-Z0K"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="ZEr-7d-0jm"/>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="0.99607843137254903" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -117,11 +152,15 @@
                     <connections>
                         <outlet property="allDaysButton" destination="KsS-nW-2Gf" id="bFv-yx-3Pk"/>
                         <outlet property="allDaysLabel" destination="sPE-ih-0rM" id="pUJ-2B-oGH"/>
+                        <outlet property="allDaysParentView" destination="j1K-oU-bZG" id="on6-vP-cou"/>
                         <outlet property="allDaysScrollView" destination="rAV-cJ-8vI" id="U9k-Xl-3QV"/>
                         <outlet property="todayButton" destination="JzE-Pc-po7" id="ZLE-d0-ekd"/>
                         <outlet property="todayChangeButton" destination="Qqc-n1-5D7" id="2jy-zu-ujt"/>
                         <outlet property="todayLabel" destination="8FF-bi-gkQ" id="Wby-r4-IT0"/>
+                        <outlet property="todayParentView" destination="JWt-hI-ese" id="ia6-D1-8HY"/>
                         <outlet property="todayScrollView" destination="QKl-Cn-dJ7" id="vcg-qO-OLC"/>
+                        <outlet property="tomorrowParentView" destination="YSl-dW-Lzl" id="V0K-HR-MdN"/>
+                        <outlet property="tomorrowScrollView" destination="2j2-zq-odL" id="JUH-im-cW2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -133,11 +172,20 @@
     <resources>
         <image name="Calendar" width="53" height="53"/>
         <image name="Clock" width="49" height="49"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemMintColor">
             <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tableCellBlueTextColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

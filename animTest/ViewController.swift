@@ -12,16 +12,22 @@ class ViewController: UIViewController {
     @IBOutlet var todayButton: UIImageView!
     @IBOutlet var todayLabel: UILabel!
     @IBOutlet var todayScrollView: UIScrollView!
+    @IBOutlet var todayParentView: UIView!
+    @IBOutlet var tomorrowScrollView: UIScrollView!
+    @IBOutlet var tomorrowParentView: UIView!
     @IBOutlet var todayChangeButton: UIView!
     @IBOutlet var allDaysButton: UIImageView!
     @IBOutlet var allDaysLabel: UILabel!
     @IBOutlet var allDaysScrollView: UIScrollView!
+    @IBOutlet var allDaysParentView: UIView!
  
     var todayMenu: TodayButton = TodayButton()
     var allDaysMenu: MenuElement = MenuElement()
     var menuButtons: Array<MenuElement> = Array()
     
-    var currentScrollID = 0 //айдишка, какая кнопка сейчас нажата, чтобы определять, влево или вправо двигать скролл
+    var scrollViewsIndexes: Dictionary<UIView, Int> = [:]
+    
+    var currentScrollID: UIView = UIView() //айдишка, какая кнопка сейчас нажата, чтобы определять, влево или вправо двигать скролл
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +50,7 @@ class ViewController: UIViewController {
         allDaysButton.addGestureRecognizer(allDayTapRecogniser)
         allDaysButton.isUserInteractionEnabled = true
         
-        todayMenu = TodayButton(button: todayButton, label: todayLabel, scrollView: todayScrollView, id: 0, isSelected: false, background: todayChangeButton)
+        todayMenu = TodayButton(button: todayButton, label: todayLabel, todayScrollView: todayScrollView, tomorrowScrollView: tomorrowScrollView, id: 0, isSelected: false, background: todayChangeButton)
         allDaysMenu = MenuElement(button: allDaysButton, label: allDaysLabel, scrollView: allDaysScrollView, id: 1, isSelected: false, labelSize: CGSize(width: 100, height: 30))
         
         menuButtons.append(todayMenu)
@@ -52,11 +58,19 @@ class ViewController: UIViewController {
         
         menuButtonEnabledAnimate(todayMenu)
     
+        currentScrollID = todayParentView
+        
+        scrollViewsIndexes[todayParentView] = 0
+        scrollViewsIndexes[tomorrowParentView] = 1
+        scrollViewsIndexes[allDaysParentView] = 2
+        
     }
 
     @objc
     private func todayButtonPressed(_ sender: UITapGestureRecognizer){
         let tappedImage = sender.view as! UIImageView
+        let target = (getMenuElementByButton(tappedImage) as! TodayButton).currentDay == .today ? todayParentView : tomorrowParentView
+        changeScrollView(currentScrollView: currentScrollID, targetScrollView: target!, currentIndex: scrollViewsIndexes[currentScrollID]!, targetIndex: scrollViewsIndexes[target!]!)
         menuButtonEnabledAnimate(getMenuElementByButton(tappedImage))
     }
     
@@ -76,11 +90,12 @@ class ViewController: UIViewController {
                     todayButton.label.frame.size = CGSize(width: todayButton.label.frame.width, height: labelHeight)
                 })
             })
+            changeScrollView(currentScrollView: currentScrollID, targetScrollView: tomorrowParentView, currentIndex: scrollViewsIndexes[currentScrollID]!, targetIndex: scrollViewsIndexes[tomorrowParentView]!)
         }
         else{
             UIView.animate(withDuration: 0.5, animations: {
                 todayButton.label.frame.size = CGSize(width: todayButton.label.frame.width, height: 0)
-            }, completion: { _ in
+            }, completion: { [self] _ in
                 todayButton.label.center.y += labelHeight
                 todayButton.label.text = "Сегодня"
                 UIView.animate(withDuration: 0.5, animations: {
@@ -88,29 +103,31 @@ class ViewController: UIViewController {
                     todayButton.label.frame.size = CGSize(width: todayButton.label.frame.width, height: labelHeight)
                 })
             })
+            changeScrollView(currentScrollView: currentScrollID, targetScrollView: todayParentView, currentIndex: scrollViewsIndexes[currentScrollID]!, targetIndex: scrollViewsIndexes[todayParentView]!)
         }
         todayButton.currentDay = todayButton.currentDay == CurrentDay.today ? CurrentDay.tommorow : CurrentDay.today//инвертируем
     }
     @objc
     private func allDayButtonPressed(_ sender: UITapGestureRecognizer){
         let tappedImage = sender.view as! UIImageView
+        changeScrollView(currentScrollView: currentScrollID, targetScrollView: allDaysParentView, currentIndex: scrollViewsIndexes[currentScrollID]!, targetIndex: scrollViewsIndexes[allDaysParentView]!)
         menuButtonEnabledAnimate(getMenuElementByButton(tappedImage))
     }
     
-    private func changeScrollView(currentScrollView: UIScrollView, targetScrollView: UIScrollView, currentIndex: Int, targetIndex: Int){
+    private func changeScrollView(currentScrollView: UIView, targetScrollView: UIView, currentIndex: Int, targetIndex: Int){
         if currentIndex  < targetIndex{ //окошко влево
-            UIScrollView.animate(withDuration: 0.5, animations: {
-                currentScrollView.center.x -= currentScrollView.frame.width //поменять на ширину вьюхи
-                targetScrollView.center.x = 0
+            UIScrollView.animate(withDuration: 0.6, animations: {
+                currentScrollView.center.x -= currentScrollView.frame.width * 2 //поменять на ширину вьюхи
+                targetScrollView.center.x = targetScrollView.frame.width / 2
             })
         }
         else{
-            UIScrollView.animate(withDuration: 0.5, animations: {
-                currentScrollView.center.x += currentScrollView.frame.width //поменять на ширину вьюхи
-                targetScrollView.center.x = 0
+            UIScrollView.animate(withDuration: 0.6, animations: {
+                currentScrollView.center.x += currentScrollView.frame.width * 2 //поменять на ширину вьюхи
+                targetScrollView.center.x = targetScrollView.frame.width / 2
             })
         }
-        currentScrollID = targetIndex
+        currentScrollID = targetScrollView
     }
     private func disableMenuButtons(without: UIImageView){
         for element in menuButtons{
@@ -132,6 +149,9 @@ class ViewController: UIViewController {
         
         if menuElement is TodayButton{ anim((menuElement as! TodayButton).background, (menuElement as! TodayButton).backgeoundSize)}
         else{anim(menuElement.label, menuElement.labelSize) }
+        
+        //смена вьюшек
+        
         
         menuElement.isSelected = true
         disableMenuButtons(without: menuElement.button)
@@ -168,4 +188,3 @@ class ViewController: UIViewController {
     }
 }
     
-
