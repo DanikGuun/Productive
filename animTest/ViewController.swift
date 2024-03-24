@@ -139,7 +139,7 @@ class ViewController: UIViewController {
         if menuElement.isSelected == true {return}
         
         func anim(_ view: UIView, _ size: CGSize){
-            UIView.animate(withDuration: 0.5, animations: {
+                UIView.animate(withDuration: 0.5, animations: {
                 menuElement.button.center.x -= 50
                 menuElement.button.tintColor = UIColor(red: 0.21, green: 0.49, blue: 0.8, alpha: 1)
                 view.frame.size = size
