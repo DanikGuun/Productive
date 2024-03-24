@@ -71,10 +71,9 @@ class TaskType: UIView{
                     UIButton.animate(withDuration: 0.2, animations: {
                         self.transform = CGAffineTransform(scaleX: 1, y: 1)
                     })
-                    self.superTask.superScroll?.deleteTask(self.superTask)
                 })
                 isToggle = true
-                
+                asyncTaskSelete()
             }
             func disable(){
                 UIButton.animate(withDuration: 0.2, animations: {
@@ -93,6 +92,11 @@ class TaskType: UIView{
             if isToggle {disable()}
             else {enable()}
             
+        }
+        func asyncTaskSelete(){
+            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: {timer in
+                if self.isToggle{self.superTask.superScroll?.deleteTask(self.superTask)}
+            })
         }
     }
 }
