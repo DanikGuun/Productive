@@ -58,7 +58,7 @@ class CustomUIScrollView: UIScrollView{
         
         let activeTasksCenters = activeTasks.map {$0.center}
         var isAfterTask = false //чтобы получить все таски после удаляемого
-        
+        print(activeTasksCenters)
         for (id, task) in activeTasks.enumerated(){
             
             if id == activeTasks.endIndex-1{break}
@@ -70,6 +70,7 @@ class CustomUIScrollView: UIScrollView{
                 anim(task: activeTasks[id+1], point: activeTasksCenters[id])
             }
         }
+        activeTasks.removeAll(where: {$0 == taskToDelete})
         taskToDelete.removeFromSuperview()
     }
 }

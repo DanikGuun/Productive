@@ -94,7 +94,7 @@ class TaskType: UIView{
             
         }
         func asyncTaskSelete(){
-            Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: {timer in
+            Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: {timer in
                 if self.isToggle{self.superTask.superScroll?.deleteTask(self.superTask)}
             })
         }
