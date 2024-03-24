@@ -172,6 +172,7 @@ class ViewController: UIViewController {
         
         menuElement.isSelected = false
     }
+    
     func getMenuElementByButton(_ button: UIImageView) -> MenuElement{
         for element in menuButtons{
             if element.button == button {return element}
