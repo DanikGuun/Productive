@@ -27,7 +27,7 @@ class TaskType: UIView{
         self.layer.shadowRadius = 2
     }
     func createCheckBox(){
-        let button = RadioButton(frame: CGRect(x: 0, y: -1, width: 50, height: 50))
+        let button = RadioButton(frame: CGRect(x: 0, y: -1, width: 50, height: 50), superTask: self)
 
         self.addSubview(button)
     }
@@ -35,11 +35,19 @@ class TaskType: UIView{
     
     class RadioButton: UIButton{
         var isToggle = false
+        var superTask: TaskType!
+        
         required init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
+            self.superTask = nil
         }
         override init(frame: CGRect){
             super.init(frame: frame)
+            preset()
+        }
+        convenience init(frame: CGRect, superTask: TaskType){
+            self.init(frame: frame)
+            self.superTask = superTask
             preset()
         }
         
@@ -63,8 +71,10 @@ class TaskType: UIView{
                     UIButton.animate(withDuration: 0.2, animations: {
                         self.transform = CGAffineTransform(scaleX: 1, y: 1)
                     })
+                    self.superTask.superScroll?.deleteTask(self.superTask)
                 })
                 isToggle = true
+                
             }
             func disable(){
                 UIButton.animate(withDuration: 0.2, animations: {

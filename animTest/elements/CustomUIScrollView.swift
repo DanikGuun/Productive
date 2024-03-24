@@ -11,6 +11,7 @@ import UIKit
 class CustomUIScrollView: UIScrollView{
     
     var lastTask: TaskType? = nil //последняя добавленная таска
+    var activeTasks = Array<TaskType>()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -30,6 +31,8 @@ class CustomUIScrollView: UIScrollView{
             addTask(TaskType(superScroll: self))
         }
     }
+    
+    // MARK: - Tasks
     func addTask(_ task: TaskType){
         if let lastTaskType = lastTask{
             task.center = CGPoint(x: task.center.x, y: lastTaskType.center.y + TaskType.size.height + 15)
@@ -42,5 +45,31 @@ class CustomUIScrollView: UIScrollView{
             contentSize = task.frame.size
             lastTask = task
         }
+        activeTasks.append(task)
+    }
+    
+    func deleteTask(_ taskToDelete: TaskType){
+        
+        func anim(task: TaskType, point: CGPoint){
+            UIView.animate(withDuration: 0.5, animations: {
+                task.center = point
+            })
+        }
+        
+        let activeTasksCenters = activeTasks.map {$0.center}
+        var isAfterTask = false //чтобы получить все таски после удаляемого
+        
+        for (id, task) in activeTasks.enumerated(){
+            
+            if id == activeTasks.endIndex-1{break}
+            
+            if taskToDelete == task{
+                isAfterTask = true
+            }
+            if isAfterTask{
+                anim(task: activeTasks[id+1], point: activeTasksCenters[id])
+            }
+        }
+        taskToDelete.removeFromSuperview()
     }
 }
