@@ -27,7 +27,7 @@ class CustomUIScrollView: UIScrollView{
     }
     
     func create(){
-        for _ in 1...5{
+        for _ in 1...15{
             addTask(TaskType(superScroll: self))
         }
     }
@@ -58,7 +58,6 @@ class CustomUIScrollView: UIScrollView{
         
         let activeTasksCenters = activeTasks.map {$0.center}
         var isAfterTask = false //чтобы получить все таски после удаляемого
-        print(activeTasksCenters)
         for (id, task) in activeTasks.enumerated(){
             
             if id == activeTasks.endIndex-1{break}
@@ -72,5 +71,6 @@ class CustomUIScrollView: UIScrollView{
         }
         activeTasks.removeAll(where: {$0 == taskToDelete})
         taskToDelete.removeFromSuperview()
+        self.contentSize = CGSize(width: contentSize.width, height: contentSize.height - TaskType.size.height - 15)
     }
 }
