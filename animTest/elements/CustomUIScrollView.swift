@@ -27,8 +27,8 @@ class CustomUIScrollView: UIScrollView{
     }
     
     func create(){
-        for _ in 1...15{
-            addTask(TaskType(superScroll: self))
+        for label in ["убраться на столе", "разобрать посудомойку", "принять ванну", "поучиться рисовать", "вытереть пыль в комнате родителейkjbkdfpikbdfip", "почитать книгу"]{
+            addTask(TaskType(superScroll: self, text: label))
         }
     }
     
