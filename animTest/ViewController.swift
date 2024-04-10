@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     @IBOutlet var allDaysLabel: UILabel!
     @IBOutlet var allDaysScrollView: CustomUIScrollView!
     @IBOutlet var allDaysParentView: UIView!
+    
+    @IBOutlet var editAlert: EditAlertView!
  
     var todayMenu: TodayButton = TodayButton()
     var allDaysMenu: MenuElement = MenuElement()
@@ -31,6 +33,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        todayScrollView.setEditAlert(editAlert)
+        tomorrowScrollView.setEditAlert(editAlert)
+        allDaysScrollView.setEditAlert(editAlert)
         
         todayChangeButton.layer.borderColor = CGColor(red: 0.21, green: 0.49, blue: 0.8, alpha: 1)
         todayChangeButton.layer.borderWidth = 2
@@ -49,6 +55,7 @@ class ViewController: UIViewController {
         let allDayTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(allDayButtonPressed(_:)))
         allDaysButton.addGestureRecognizer(allDayTapRecogniser)
         allDaysButton.isUserInteractionEnabled = true
+    
         
         todayMenu = TodayButton(button: todayButton, label: todayLabel, todayScrollView: todayScrollView, tomorrowScrollView: tomorrowScrollView, id: 0, isSelected: false, background: todayChangeButton)
         allDaysMenu = MenuElement(button: allDaysButton, label: allDaysLabel, scrollView: allDaysScrollView, id: 1, isSelected: false, labelSize: CGSize(width: 100, height: 30))
@@ -187,5 +194,6 @@ class ViewController: UIViewController {
         print("Не найден!")
         return TodayButton()
     }
+    
 }
     

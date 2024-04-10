@@ -10,8 +10,9 @@ import UIKit
 
 class CustomUIScrollView: UIScrollView{
     
-    var lastTask: TaskType? = nil //последняя добавленная таска
+    private var lastTask: TaskType? = nil //последняя добавленная таска
     var activeTasks = Array<TaskType>()
+    var taskEditAlert: EditAlertView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -26,7 +27,7 @@ class CustomUIScrollView: UIScrollView{
         super.layoutSubviews()
     }
     
-    func create(){
+    private func create(){
         for label in ["убраться на столе", "разобрать посудомойку", "принять ванну", "поучиться рисовать", "вытереть пыль в комнате родителейkjbkdfpikbdfip", "почитать книгу"]{
             addTask(TaskType(superScroll: self, text: label))
         }
@@ -72,5 +73,10 @@ class CustomUIScrollView: UIScrollView{
         activeTasks.removeAll(where: {$0 == taskToDelete})
         taskToDelete.removeFromSuperview()
         self.contentSize = CGSize(width: contentSize.width, height: contentSize.height - TaskType.size.height - 15)
+    }
+    //MARK: setAlerts
+    func setEditAlert(_ alert: EditAlertView){
+        self.taskEditAlert = alert
+        activeTasks.map {$0.setEditAlert(alert)}
     }
 }
