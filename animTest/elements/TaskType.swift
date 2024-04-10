@@ -1,11 +1,12 @@
 import Foundation
 import UIKit
 
-final class TaskType: UIView{
+final class TaskType: UIView, UITextFieldDelegate{
     
     static let size = CGSize(width: 380, height: 46) //размер плашки с заданием
     static let checkBoxSize = 50
     private var superScroll: CustomUIScrollView?
+    var textField = UITextField()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -19,7 +20,6 @@ final class TaskType: UIView{
         createCheckBox()
         createText(text: text)
     }
-
     override func layoutSubviews(){//Настройка параметров отображения
         self.backgroundColor = superScroll?.backgroundColor
         self.layer.cornerRadius = 9
@@ -28,14 +28,17 @@ final class TaskType: UIView{
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowRadius = 2
     }
+    ///
     func createText(text: String){
-        var label = UILabel()
-        label.text = text
-        label.textColor = UIColor(cgColor: CGColor(red: 0.24, green: 0.64, blue: 0.81, alpha: 1))
-        label.font = UIFont(name: "bloggersans-medium", size: 20)
-        label.frame = CGRect(x: TaskType.checkBoxSize, y: 2, width: Int(TaskType.size.width) - TaskType.checkBoxSize*2, height: 46)
-        self.addSubview(label)
+        textField.text = text
+        textField.textColor = UIColor(cgColor: CGColor(red: 0.24, green: 0.64, blue: 0.81, alpha: 1))
+        textField.font = UIFont(name: "bloggersans-medium", size: 20)
+        textField.frame = CGRect(x: TaskType.checkBoxSize, y: 2, width: Int(TaskType.size.width) - TaskType.checkBoxSize*2, height: 46)
+        textField.returnKeyType = .done
+        textField.delegate = self
+        self.addSubview(textField)
     }
+    ///
     func createCheckBox(){
         let button = RadioButton(frame: CGRect(x: 0, y: -1, width: TaskType.checkBoxSize, height: TaskType.checkBoxSize), superTask: self)
         
@@ -47,6 +50,13 @@ final class TaskType: UIView{
         self.addSubview(button)
     }
     
+    //чтобы клавиатура скрывалась
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //MARK: INFO BUTTON
     private final class InformationButton: UIButton{
         var info: String!
         
@@ -72,10 +82,10 @@ final class TaskType: UIView{
         
         @objc
         func buttonPressed(_ sender: UITapGestureRecognizer){
-            print(info!)
         }
     }
     
+    //MARK: TaskDoneButton
     private final class RadioButton: UIButton{
         var isToggle = false
         var superTask: TaskType!
