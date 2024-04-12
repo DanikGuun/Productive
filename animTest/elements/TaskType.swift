@@ -7,9 +7,9 @@ final class TaskType: UIView, UITextFieldDelegate{
     static let checkBoxSize = 50
     private var superScroll: CustomUIScrollView?
     
-    var textField = UITextField()
-    var date = Date()
-    var descriptionTask = ""
+    var taskName = UITextField()
+    var taskDate = Date()
+    var taskDescription = ""
     var editAlert: EditAlertView!
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,13 +34,13 @@ final class TaskType: UIView, UITextFieldDelegate{
     }
     
     private func createText(text: String){
-        textField.text = text
-        textField.textColor = UIColor(cgColor: CGColor(red: 0.24, green: 0.64, blue: 0.81, alpha: 1))
-        textField.font = UIFont(name: "bloggersans-medium", size: 20)
-        textField.frame = CGRect(x: TaskType.checkBoxSize, y: 2, width: Int(TaskType.size.width) - TaskType.checkBoxSize*2, height: 46)
-        textField.returnKeyType = .done
-        textField.delegate = self
-        self.addSubview(textField)
+        taskName.text = text
+        taskName.textColor = UIColor(cgColor: CGColor(red: 0.24, green: 0.64, blue: 0.81, alpha: 1))
+        taskName.font = UIFont(name: "bloggersans-medium", size: 20)
+        taskName.frame = CGRect(x: TaskType.checkBoxSize, y: 2, width: Int(TaskType.size.width) - TaskType.checkBoxSize*2, height: 46)
+        taskName.returnKeyType = .done
+        taskName.delegate = self
+        self.addSubview(taskName)
     }
     
     private func createCheckBox(){
@@ -86,7 +86,8 @@ final class TaskType: UIView, UITextFieldDelegate{
         
         @objc
         func buttonPressed(_ sender: UITapGestureRecognizer){
-            superTaskType.editAlert.alpha = 1
+            superTaskType.editAlert.setFieldsValue(task: superTaskType)
+            superTaskType.editAlert.show()
         }
     }
     
