@@ -33,6 +33,12 @@ final class TaskType: UIView, UITextFieldDelegate{
         self.layer.shadowRadius = 2
     }
     
+    func updateTask(){
+        taskName.text = editAlert.taskNameField.text
+        taskDate = editAlert.taskDatePicker.date
+        taskDescription = editAlert.taskDescriptionField.text ?? ""
+    }
+    
     private func createText(text: String){
         taskName.text = text
         taskName.textColor = UIColor(cgColor: CGColor(red: 0.24, green: 0.64, blue: 0.81, alpha: 1))
