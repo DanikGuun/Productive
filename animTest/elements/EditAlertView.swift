@@ -7,6 +7,8 @@ class EditAlertView: UIView{
     private var taskDatePicker: UIDatePicker!
     private var taskDescriptionField: UITextField!
     
+    var editableTask: TaskType!
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
@@ -14,7 +16,6 @@ class EditAlertView: UIView{
         self.addGestureRecognizer(recogniser)
         
         findFields()
-        taskNameField.text = "очко"
     }
     
     func findFields(){
@@ -26,12 +27,14 @@ class EditAlertView: UIView{
             default: continue
             }
         }
+
     }
     
     func setFieldsValue(task: TaskType){
         self.taskNameField.text = task.taskName.text
-        self.taskDescriptionField.text = task.taskDescription
+        self.taskDescriptionField.text = task.taskDescription != "" ? task.taskDescription : nil
         self.taskDatePicker.date = task.taskDate
+        self.editableTask = task
     }
     
     func getAllSubviews(of view: UIView) -> [UIView]{

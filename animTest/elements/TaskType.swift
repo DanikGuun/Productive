@@ -83,7 +83,7 @@ final class TaskType: UIView, UITextFieldDelegate{
             let recogniser = UITapGestureRecognizer(target: self, action: #selector(buttonPressed(_:)))
             self.addGestureRecognizer(recogniser)
         }
-        
+    
         @objc
         func buttonPressed(_ sender: UITapGestureRecognizer){
             superTaskType.editAlert.setFieldsValue(task: superTaskType)
