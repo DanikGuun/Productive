@@ -10,19 +10,27 @@ final class TaskType: UIView, UITextFieldDelegate{
     var taskName = UITextField()
     var taskDate = Date()
     var taskDescription = ""
+    var isDone = false
+    
     var editAlert: EditAlertView!
+    var fade = UIView()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    init(superScroll: CustomUIScrollView, text: String) {
+    init(superScroll: CustomUIScrollView, text: String, date: Date, description: String, isDone: Bool) {
         super.init(frame: CGRect(x: 0, y: 0, width: TaskType.size.width, height: TaskType.size.height))
         self.superScroll = superScroll
         self.center = CGPoint(x: superScroll.frame.size.width  / 2, y: self.center.y+15)
+        self.taskName.text = text
+        self.taskDate = date
+        self.taskDescription = description
+        self.isDone = isDone
         createInfoButton()
         createCheckBox()
         createText(text: text)
+        createFade()
     }
     override func layoutSubviews(){//Настройка параметров отображения
         self.backgroundColor = superScroll?.backgroundColor
@@ -48,7 +56,6 @@ final class TaskType: UIView, UITextFieldDelegate{
         taskName.delegate = self
         self.addSubview(taskName)
     }
-    
     private func createCheckBox(){
         let button = RadioButton(frame: CGRect(x: 0, y: -1, width: TaskType.checkBoxSize, height: TaskType.checkBoxSize), superTask: self)
         
@@ -59,12 +66,41 @@ final class TaskType: UIView, UITextFieldDelegate{
         
         self.addSubview(button)
     }
+    private func createFade(){
+        fade.isUserInteractionEnabled = false
+        fade.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        fade.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        fade.layer.cornerRadius = 9
+        self.addSubview(fade)
+    }
     
     //чтобы клавиатура скрывалась
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
+    func animSnapTo(point: CGPoint){
+        UIView.animate(withDuration: 0.5, animations: {
+            self.center = point
+        })
+    }
+    
+    func setEditAlert(_ alert: EditAlertView){
+        self.editAlert = alert
+    }
+    
+    func animFade(){
+        UIView.animate(withDuration: 0.5, animations: {
+            self.fade.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+        })
+    }
+    func animUnfade(){
+        UIView.animate(withDuration: 0.5, animations: {
+            self.fade.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
+        })
+    }
+
     
     //MARK: INFO BUTTON
     private final class InformationButton: UIButton{
@@ -137,7 +173,6 @@ final class TaskType: UIView, UITextFieldDelegate{
                     })
                 })
                 isToggle = true
-                asyncTaskSelete()
             }
             func disable(){
                 UIButton.animate(withDuration: 0.2, animations: {
@@ -153,18 +188,16 @@ final class TaskType: UIView, UITextFieldDelegate{
                 isToggle = false
             }
 
-            if isToggle {disable()}
-            else {enable()}
+            if isToggle { disable() }
+            else { enable() }
+            asyncTaskCheck()
             
         }
-        func asyncTaskSelete(){
-            Timer.scheduledTimer(withTimeInterval: 1.7, repeats: false, block: {timer in
-                if self.isToggle{self.superTask.superScroll?.deleteTask(self.superTask)}
+        func asyncTaskCheck(){
+            Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: {timer in
+                if self.isToggle{ self.superTask.superScroll?.deleteTask(self.superTask) }
+                else { self.superTask.superScroll?.undeleteTask(self.superTask) }
             })
         }
-    }
-    
-    func setEditAlert(_ alert: EditAlertView){
-        self.editAlert = alert
     }
 }

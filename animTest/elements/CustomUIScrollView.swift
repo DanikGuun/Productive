@@ -28,8 +28,8 @@ class CustomUIScrollView: UIScrollView{
     }
     
     private func create(){
-        for label in ["убраться на столе", "разобрать посудомойку", "принять ванну", "поучиться рисовать", "вытереть пыль в комнате родителейkjbkdfpikbdfip", "почитать книгу"]{
-            addTask(TaskType(superScroll: self, text: label))
+        for label in ["убраться на столе", "разобрать посудомойку", "принять ванну", "поучиться рисовать", "вытереть пыль в комнате родителей", "почитать книгу"]{
+            addTask(TaskType(superScroll: self, text: label, date: Date(), description: "", isDone: false))
         }
     }
     
@@ -49,31 +49,56 @@ class CustomUIScrollView: UIScrollView{
         activeTasks.append(task)
     }
     
+    //MARK: Task Managing
     func deleteTask(_ taskToDelete: TaskType){
-        
-        func anim(task: TaskType, point: CGPoint){
-            UIView.animate(withDuration: 0.5, animations: {
-                task.center = point
-            })
-        }
-        
         let activeTasksCenters = activeTasks.map {$0.center}
         var isAfterTask = false //чтобы получить все таски после удаляемого
-        for (id, task) in activeTasks.enumerated(){
+        
+        
+        for (id, task) in activeTasks.enumerated(){ //перемещаем все неготовые таски после нажатой наверх
             
-            if id == activeTasks.endIndex-1{break}
+            if (id == activeTasks.endIndex || task.isDone){break}
             
+            if isAfterTask{
+                task.animSnapTo(point: activeTasksCenters[id-1])
+            }
             if taskToDelete == task{
                 isAfterTask = true
             }
-            if isAfterTask{
-                anim(task: activeTasks[id+1], point: activeTasksCenters[id])
+        }
+        
+        //перемещаем текущую таску в начало готовых
+        var firstDoneTaskId: Int? {
+            get{
+                self.activeTasks.firstIndex(where: { $0.isDone })
             }
         }
+
+        taskToDelete.animSnapTo(point: activeTasksCenters[ (firstDoneTaskId ?? self.activeTasks.endIndex)-1 ])
+
+        
+        //перемещаем таски в массиве, текущую в начало готовых
         activeTasks.removeAll(where: {$0 == taskToDelete})
-        taskToDelete.removeFromSuperview()
-        self.contentSize = CGSize(width: contentSize.width, height: contentSize.height - TaskType.size.height - 15)
+        activeTasks.insert(taskToDelete, at: firstDoneTaskId ?? activeTasks.endIndex)
+        taskToDelete.animFade()
+        taskToDelete.isDone = true
     }
+    func undeleteTask(_ taskToUndelete: TaskType){
+        let activeTasksCenters = activeTasks.map { $0.center }
+        
+        for (id, task) in activeTasks.enumerated(){
+            if task == taskToUndelete {break}
+            task.animSnapTo(point: activeTasksCenters[id+1])
+        }
+        
+        if taskToUndelete != activeTasks[0] {taskToUndelete.animSnapTo(point: activeTasksCenters[0])}
+        
+        activeTasks.removeAll(where: {$0 == taskToUndelete})
+        activeTasks.insert(taskToUndelete, at: 0)
+        taskToUndelete.animUnfade()
+        taskToUndelete.isDone = false
+    }
+    
     //MARK: setAlerts
     func setEditAlert(_ alert: EditAlertView){
         self.taskEditAlert = alert

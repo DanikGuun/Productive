@@ -47,6 +47,10 @@ class EditAlertView: UIView{
     }
     
     @objc
-    func hide(_ sender: UITapGestureRecognizer){ self.alpha = 0; editableTask?.updateTask()}
+    func hide(_ sender: UITapGestureRecognizer){
+        self.alpha = 0
+        editableTask?.updateTask()
+        self.endEditing(true)
+    }
     func show(){self.alpha = 1}
 }

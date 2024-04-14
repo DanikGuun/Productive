@@ -144,7 +144,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.99607843139999996" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GM5-hh-cfj" userLabel="Alert" customClass="EditAlertView" customModule="animTest" customModuleProvider="target">
+                            <view opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GM5-hh-cfj" userLabel="Alert" customClass="EditAlertView" customModule="animTest" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>

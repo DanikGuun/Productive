@@ -27,7 +27,7 @@
 		562842952BB5201700E60644 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		562842972BB520C400E60644 /* InfoAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InfoAlert.storyboard; sourceTree = "<group>"; };
 		568D86ED2B9AE06D0039A980 /* bloggersans-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bloggersans-medium.ttf"; path = "../../../../../Library/Fonts/bloggersans-medium.ttf"; sourceTree = "<group>"; };
-		56AD92692BAD71BB003AE816 /* CustomUIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIScrollView.swift; sourceTree = "<group>"; };
+		56AD92692BAD71BB003AE816 /* CustomUIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CustomUIScrollView.swift; sourceTree = "<group>"; };
 		56B054822B9A40C800F8E148 /* animTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = animTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56B054852B9A40C800F8E148 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56B054872B9A40C800F8E148 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
