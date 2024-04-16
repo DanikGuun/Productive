@@ -5,7 +5,7 @@ final class TaskType: UIView, UITextFieldDelegate{
     
     static let size = CGSize(width: 380, height: 46) //размер плашки с заданием
     static let checkBoxSize = 50
-    private var superScroll: CustomUIScrollView?
+    var superScroll: TasksScrollView?
     
     var taskName = UITextField()
     var taskDate = Date()
@@ -19,7 +19,7 @@ final class TaskType: UIView, UITextFieldDelegate{
         super.init(coder: aDecoder)
     }
 
-    init(superScroll: CustomUIScrollView, text: String, date: Date, description: String, isDone: Bool) {
+    init(superScroll: TasksScrollView, text: String, date: Date, description: String, isDone: Bool) {
         super.init(frame: CGRect(x: 0, y: 0, width: TaskType.size.width, height: TaskType.size.height))
         self.superScroll = superScroll
         self.center = CGPoint(x: superScroll.frame.size.width  / 2, y: self.center.y+15)

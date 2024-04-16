@@ -92,7 +92,7 @@
                                         <color key="textColor" red="0.21176470588235294" green="0.49019607843137253" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKl-Cn-dJ7" userLabel="Today ScrollView" customClass="CustomUIScrollView" customModule="animTest" customModuleProvider="target">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKl-Cn-dJ7" userLabel="Today ScrollView" customClass="TasksScrollView" customModule="animTest" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="29" width="393" height="632"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="1" green="0.99607843159999998" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -113,7 +113,7 @@
                                         <color key="textColor" red="0.21176470589999999" green="0.49019607840000001" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2j2-zq-odL" userLabel="TommorowScroll" customClass="CustomUIScrollView" customModule="animTest" customModuleProvider="target">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2j2-zq-odL" userLabel="TommorowScroll" customClass="TasksScrollView" customModule="animTest" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="29" width="393" height="632"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="1" green="0.99607843139999996" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -134,7 +134,7 @@
                                         <color key="textColor" red="0.21176470589999999" green="0.49019607840000001" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rAV-cJ-8vI" userLabel="All Days ScrollView" customClass="CustomUIScrollView" customModule="animTest" customModuleProvider="target">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rAV-cJ-8vI" userLabel="All Days ScrollView" customClass="AllDaysScrollView" customModule="animTest" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="29" width="393" height="632"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="1" green="0.99607843139999996" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -210,19 +210,36 @@
                         <outlet property="todayScrollView" destination="QKl-Cn-dJ7" id="vcg-qO-OLC"/>
                         <outlet property="tomorrowParentView" destination="YSl-dW-Lzl" id="V0K-HR-MdN"/>
                         <outlet property="tomorrowScrollView" destination="2j2-zq-odL" id="JUH-im-cW2"/>
+                        <segue destination="Sf5-qr-o8t" kind="show" identifier="DaySegue" id="21E-7A-NTa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="101.5267175572519" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="11" y="4"/>
+        </scene>
+        <!--Date Screen View Controller-->
+        <scene sceneID="9Ny-qZ-rfV">
+            <objects>
+                <viewController id="Sf5-qr-o8t" customClass="DateScreenViewController" customModule="animTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cWl-14-gPt">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="8Zu-WG-DEI"/>
+                        <color key="backgroundColor" red="1" green="0.99607843159999998" blue="0.94901967050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1Yf-Q7-Z6X"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b5y-P6-c8o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="773" y="4"/>
         </scene>
     </scenes>
-    <color key="tintColor" systemColor="tableCellBlueTextColor"/>
+    <color key="tintColor" systemColor="tableBackgroundColor"/>
     <resources>
         <image name="Calendar" width="53" height="53"/>
         <image name="Clock" width="49" height="49"/>
-        <systemColor name="tableCellBlueTextColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="tableBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

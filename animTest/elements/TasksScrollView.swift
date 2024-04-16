@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CustomUIScrollView: UIScrollView{
+class TasksScrollView: UIScrollView{
     
     private var lastTask: TaskType? = nil //последняя добавленная таска
     var activeTasks = Array<TaskType>()

@@ -11,14 +11,14 @@ class ViewController: UIViewController {
 
     @IBOutlet var todayButton: UIImageView!
     @IBOutlet var todayLabel: UILabel!
-    @IBOutlet var todayScrollView: CustomUIScrollView!
+    @IBOutlet var todayScrollView: TasksScrollView!
     @IBOutlet var todayParentView: UIView!
-    @IBOutlet var tomorrowScrollView: CustomUIScrollView!
+    @IBOutlet var tomorrowScrollView: TasksScrollView!
     @IBOutlet var tomorrowParentView: UIView!
     @IBOutlet var todayChangeButton: UIView!
     @IBOutlet var allDaysButton: UIImageView!
     @IBOutlet var allDaysLabel: UILabel!
-    @IBOutlet var allDaysScrollView: CustomUIScrollView!
+    @IBOutlet var allDaysScrollView: AllDaysScrollView!
     @IBOutlet var allDaysParentView: UIView!
     
     @IBOutlet var editAlert: EditAlertView!
@@ -36,7 +36,6 @@ class ViewController: UIViewController {
         
         todayScrollView.setEditAlert(editAlert)
         tomorrowScrollView.setEditAlert(editAlert)
-        allDaysScrollView.setEditAlert(editAlert)
         
         todayChangeButton.layer.borderColor = CGColor(red: 0.21, green: 0.49, blue: 0.8, alpha: 1)
         todayChangeButton.layer.borderWidth = 2
@@ -56,6 +55,7 @@ class ViewController: UIViewController {
         allDaysButton.addGestureRecognizer(allDayTapRecogniser)
         allDaysButton.isUserInteractionEnabled = true
     
+        allDaysScrollView.viewController = self
         
         todayMenu = TodayButton(button: todayButton, label: todayLabel, todayScrollView: todayScrollView, tomorrowScrollView: tomorrowScrollView, id: 0, isSelected: false, background: todayChangeButton)
         allDaysMenu = MenuElement(button: allDaysButton, label: allDaysLabel, scrollView: allDaysScrollView, id: 1, isSelected: false, labelSize: CGSize(width: 100, height: 30))
