@@ -31,6 +31,11 @@ final class TaskType: UIView, UITextFieldDelegate{
         createCheckBox()
         createText(text: text)
         createFade()
+        
+        if isDone{
+            animFade()
+            
+        }
     }
     override func layoutSubviews(){//Настройка параметров отображения
         self.backgroundColor = superScroll?.backgroundColor
@@ -149,6 +154,11 @@ final class TaskType: UIView, UITextFieldDelegate{
         convenience init(frame: CGRect, superTask: TaskType){
             self.init(frame: frame)
             self.superTask = superTask
+            if superTask.isDone{
+                isToggle = true
+                self.setImage(.radioButtonEnabled, for: .normal)
+                self.tintColor = UIColor(red: 0.21, green: 0.49, blue: 0.8, alpha: 1)
+            }
         }
         
         func preset(){

@@ -37,13 +37,13 @@ class TasksScrollView: UIScrollView{
     func addTask(_ task: TaskType){
         if let lastTaskType = lastTask{
             task.center = CGPoint(x: task.center.x, y: lastTaskType.center.y + TaskType.size.height + 15)
-            contentSize = CGSize(width: contentSize.width, height: contentSize.height + TaskType.size.height + 15)//считаем размер скрола
+            self.contentSize = CGSize(width: contentSize.width, height: contentSize.height + TaskType.size.height + 15)//считаем размер скрола
             lastTask = task
             addSubview(task)
         }
         else{
             addSubview(task)
-            contentSize = task.frame.size
+            self.contentSize = task.frame.size
             lastTask = task
         }
         activeTasks.append(task)

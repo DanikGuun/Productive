@@ -9,8 +9,11 @@ import UIKit
 
 class DateScreenViewController: UIViewController {
 
+    @IBOutlet weak var editAlert: EditAlertView!
+    @IBOutlet weak var tasksScrollView: TasksScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tasksScrollView.setEditAlert(editAlert)
     }
-
 }
