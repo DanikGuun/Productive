@@ -148,6 +148,5 @@ class TasksScrollView: UIScrollView{
     func setEditAlert(_ alert: EditAlertView){
         self.taskEditAlert = alert
         activeTasks.map {$0.setEditAlert(alert)}
-        
     }
 }

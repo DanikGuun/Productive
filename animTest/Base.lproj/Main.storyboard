@@ -99,6 +99,11 @@
                                         <viewLayoutGuide key="contentLayoutGuide" id="Oj1-KK-M2i"/>
                                         <viewLayoutGuide key="frameLayoutGuide" id="Vgr-SZ-Zcs"/>
                                     </scrollView>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Plus" translatesAutoresizingMaskIntoConstraints="NO" id="G1M-du-EC3">
+                                        <rect key="frame" x="345" y="-10" width="33" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.34509804840000002" green="0.56862747670000002" blue="0.81960785390000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.99607843139999996" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -106,6 +111,11 @@
                                 <rect key="frame" x="393" y="96" width="393" height="663"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Plus" translatesAutoresizingMaskIntoConstraints="NO" id="AiZ-Q2-JJk">
+                                        <rect key="frame" x="345" y="-10" width="33" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.34509804840000002" green="0.56862747670000002" blue="0.81960785390000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Планы на завтра" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2j-e9-Coc">
                                         <rect key="frame" x="20" y="0.0" width="337" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -215,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11" y="4"/>
+            <point key="canvasLocation" x="9.9236641221374047" y="3.5211267605633805"/>
         </scene>
         <!--Date Screen View Controller-->
         <scene sceneID="9Ny-qZ-rfV">
@@ -301,6 +311,7 @@
     <resources>
         <image name="Calendar" width="53" height="53"/>
         <image name="Clock" width="49" height="49"/>
+        <image name="Plus" width="30" height="30"/>
         <systemColor name="tableBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
