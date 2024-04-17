@@ -28,25 +28,47 @@ class TasksScrollView: UIScrollView{
     }
     
     private func create(){
+        let bol: [Bool] = [true, false]
         for label in ["убраться на столе", "разобрать посудомойку", "принять ванну", "поучиться рисовать", "вытереть пыль в комнате родителей", "почитать книгу"]{
-            addTask(TaskType(superScroll: self, text: label, date: Date(), description: "", isDone: false))
+            addTask(TaskType(superScroll: self, text: label, date: Date(), description: "", isDone: bol.randomElement()!))
         }
+        activeTasks.map {print("\($0.taskName.text) - \($0.isDone)")}
+        print("\n")
     }
     
     // MARK: - Tasks
-    func addTask(_ task: TaskType){
-        if let lastTaskType = lastTask{
-            task.center = CGPoint(x: task.center.x, y: lastTaskType.center.y + TaskType.size.height + 15)
-            self.contentSize = CGSize(width: contentSize.width, height: contentSize.height + TaskType.size.height + 15)//считаем размер скрола
-            lastTask = task
-            addSubview(task)
+    func addTask(_ taskToAdd: TaskType){
+        if taskToAdd.isDone == false || activeTasks.isEmpty{//ставим неготовый таск наверх или если тасков нет
+            for task in activeTasks{
+                task.center = CGPoint(x: task.center.x, y: task.center.y + TaskType.size.height + 15)
+            }
+            activeTasks.insert(taskToAdd, at: 0)
         }
         else{
-            addSubview(task)
-            self.contentSize = task.frame.size
-            lastTask = task
+            
+            var isAfterNotDoneTask = false //после неготовых тасок
+            
+            for (id, task) in activeTasks.enumerated(){
+                
+                if (task.isDone == true && isAfterNotDoneTask == false){ //если попали на первую готовую таску
+                    isAfterNotDoneTask = true
+                    taskToAdd.center = task.center
+                    activeTasks.insert(taskToAdd, at: id)
+                }
+                
+                if isAfterNotDoneTask{
+                    task.center = CGPoint(x: task.center.x, y: task.center.y + TaskType.size.height + 15)
+                }
+            }
+            
+            if isAfterNotDoneTask == false{ //если нет готовых тасок
+                taskToAdd.center = CGPoint(x: activeTasks.last!.center.x,
+                                           y: activeTasks.last!.center.y + TaskType.size.height + 15)
+                activeTasks.append(taskToAdd)
+            }
         }
-        activeTasks.append(task)
+        addSubview(taskToAdd)
+        
     }
     
     //MARK: Task Managing

@@ -48,6 +48,9 @@ final class TaskType: UIView, UITextFieldDelegate{
     
     func updateTask(){
         taskName.text = editAlert.taskNameField.text
+        if taskDate != editAlert.taskDatePicker.date{
+            superScroll?.removeTask(self)
+        }
         taskDate = editAlert.taskDatePicker.date
         taskDescription = editAlert.taskDescriptionField.text ?? ""
     }
