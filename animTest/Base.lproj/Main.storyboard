@@ -213,11 +213,13 @@
                         <outlet property="allDaysParentView" destination="j1K-oU-bZG" id="on6-vP-cou"/>
                         <outlet property="allDaysScrollView" destination="rAV-cJ-8vI" id="U9k-Xl-3QV"/>
                         <outlet property="editAlert" destination="GM5-hh-cfj" id="IEa-ol-F9c"/>
+                        <outlet property="todayAddTaskButton" destination="G1M-du-EC3" id="ysc-Mi-X1A"/>
                         <outlet property="todayButton" destination="JzE-Pc-po7" id="ZLE-d0-ekd"/>
                         <outlet property="todayChangeButton" destination="Qqc-n1-5D7" id="2jy-zu-ujt"/>
                         <outlet property="todayLabel" destination="8FF-bi-gkQ" id="Wby-r4-IT0"/>
                         <outlet property="todayParentView" destination="JWt-hI-ese" id="ia6-D1-8HY"/>
                         <outlet property="todayScrollView" destination="QKl-Cn-dJ7" id="vcg-qO-OLC"/>
+                        <outlet property="tommorowAddTaskButton" destination="AiZ-Q2-JJk" id="h90-n7-82n"/>
                         <outlet property="tomorrowParentView" destination="YSl-dW-Lzl" id="V0K-HR-MdN"/>
                         <outlet property="tomorrowScrollView" destination="2j2-zq-odL" id="JUH-im-cW2"/>
                         <segue destination="Sf5-qr-o8t" kind="show" identifier="DaySegue" id="21E-7A-NTa"/>
@@ -235,6 +237,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Plus" translatesAutoresizingMaskIntoConstraints="NO" id="YCZ-V4-h1B">
+                                <rect key="frame" x="345" y="60" width="33" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.34509804840000002" green="0.56862747670000002" blue="0.81960785390000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cuA-9y-GHF" customClass="TasksScrollView" customModule="animTest" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="99" width="393" height="743"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -298,6 +305,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="1Yf-Q7-Z6X"/>
                     <connections>
+                        <outlet property="addTaskButton" destination="YCZ-V4-h1B" id="xdo-wq-2AU"/>
                         <outlet property="editAlert" destination="PQ6-9L-8O7" id="P6k-bf-tfG"/>
                         <outlet property="tasksScrollView" destination="cuA-9y-GHF" id="yNB-Y3-VPZ"/>
                     </connections>

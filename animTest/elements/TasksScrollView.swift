@@ -10,6 +10,7 @@ import UIKit
 
 class TasksScrollView: UIScrollView{
     
+    private var addTaskButton: UIImageView!
     private var lastTask: TaskType? = nil //последняя добавленная таска
     var activeTasks = Array<TaskType>()
     var taskEditAlert: EditAlertView!
@@ -17,6 +18,7 @@ class TasksScrollView: UIScrollView{
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         create()
+
     }
     
     init (){
@@ -32,11 +34,17 @@ class TasksScrollView: UIScrollView{
         for label in ["убраться на столе", "разобрать посудомойку", "принять ванну", "поучиться рисовать", "вытереть пыль в комнате родителей", "почитать книгу"]{
             addTask(TaskType(superScroll: self, text: label, date: Date(), description: "", isDone: bol.randomElement()!))
         }
-        activeTasks.map {print("\($0.taskName.text) - \($0.isDone)")}
-        print("\n")
     }
     
     // MARK: - Tasks
+    @objc
+    func addTaskButtonPressed(_ sender: UITapGestureRecognizer){
+        var task = TaskType(superScroll: self, text: "", date: Date(), description: "", isDone: false)
+        task.setEditAlert(taskEditAlert)
+        addTask(task)
+        task.taskName.becomeFirstResponder()
+    }
+    
     func addTask(_ taskToAdd: TaskType){
         if taskToAdd.isDone == false || activeTasks.isEmpty{//ставим неготовый таск наверх или если тасков нет
             for task in activeTasks{
@@ -148,5 +156,10 @@ class TasksScrollView: UIScrollView{
     func setEditAlert(_ alert: EditAlertView){
         self.taskEditAlert = alert
         activeTasks.map {$0.setEditAlert(alert)}
+    }
+    func setAddTaskButton(_ button: UIImageView){
+        self.addTaskButton = button
+        let tap = UITapGestureRecognizer(target: self, action: #selector(addTaskButtonPressed(_:)))
+        self.addTaskButton.addGestureRecognizer(tap)
     }
 }

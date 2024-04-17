@@ -22,7 +22,9 @@ class ViewController: UIViewController {
     @IBOutlet var allDaysParentView: UIView!
     
     @IBOutlet var editAlert: EditAlertView!
- 
+    @IBOutlet weak var todayAddTaskButton: UIImageView!
+    @IBOutlet weak var tommorowAddTaskButton: UIImageView!
+    
     var todayMenu: TodayButton = TodayButton()
     var allDaysMenu: MenuElement = MenuElement()
     var menuButtons: Array<MenuElement> = Array()
@@ -35,7 +37,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         todayScrollView.setEditAlert(editAlert)
+        todayScrollView.setAddTaskButton(todayAddTaskButton)
         tomorrowScrollView.setEditAlert(editAlert)
+        tomorrowScrollView.setAddTaskButton(tommorowAddTaskButton)
         
         todayChangeButton.layer.borderColor = CGColor(red: 0.21, green: 0.49, blue: 0.8, alpha: 1)
         todayChangeButton.layer.borderWidth = 2
