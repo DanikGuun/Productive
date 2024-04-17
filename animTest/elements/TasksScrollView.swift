@@ -99,9 +99,33 @@ class TasksScrollView: UIScrollView{
         taskToUndelete.isDone = false
     }
     
+    func removeTask(_ taskToRemove: TaskType){
+        let activeTasksCenters = activeTasks.map {$0.center}
+        var isAfterTask = false //чтобы получить все таски после удаляемого
+        
+        for (id, task) in activeTasks.enumerated(){
+            
+            if isAfterTask{
+                task.animSnapTo(point: activeTasksCenters[id-1])
+            }
+            
+            if task == taskToRemove{
+                isAfterTask = true
+                UIView.animate(withDuration: 1, animations: {
+                    task.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+                }, completion: {_ in 
+                    task.removeFromSuperview()
+                })
+            }
+        }
+        self.contentSize = CGSize(width: self.contentSize.width, height: self.contentSize.height - TaskType.size.height - 15)
+        activeTasks.removeAll(where: {$0 == taskToRemove})
+    }
+    
     //MARK: setAlerts
     func setEditAlert(_ alert: EditAlertView){
         self.taskEditAlert = alert
         activeTasks.map {$0.setEditAlert(alert)}
+        
     }
 }
