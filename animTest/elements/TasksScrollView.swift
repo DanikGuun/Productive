@@ -14,6 +14,7 @@ class TasksScrollView: UIScrollView{
     private var lastTask: TaskType? = nil //последняя добавленная таска
     var activeTasks = Array<TaskType>()
     var taskEditAlert: EditAlertView?
+    var forDate: Date!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -39,7 +40,7 @@ class TasksScrollView: UIScrollView{
     // MARK: - Tasks
     @objc
     func addTaskButtonPressed(_ sender: UITapGestureRecognizer){
-        var task = TaskType(superScroll: self, text: "", date: Date(), description: "", isDone: false)
+        let task = TaskType(superScroll: self, text: "", date: Date(), description: "", isDone: false)
         task.setEditAlert(taskEditAlert!)
         addTask(task)
         task.taskName.becomeFirstResponder()
@@ -160,6 +161,10 @@ class TasksScrollView: UIScrollView{
         activeTasks.removeAll(where: {$0 == taskToRemove})
     }
     
+    func setDate(_ date: Date){
+        self.forDate = date
+        activeTasks.map {$0.taskDate = date}
+    }
     //MARK: setAlerts
     func setEditAlert(_ alert: EditAlertView){
         self.taskEditAlert = alert

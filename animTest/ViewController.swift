@@ -38,8 +38,10 @@ class ViewController: UIViewController {
         
         todayScrollView.setEditAlert(editAlert)
         todayScrollView.setAddTaskButton(todayAddTaskButton)
+        todayScrollView.setDate(Date())
         tomorrowScrollView.setEditAlert(editAlert)
         tomorrowScrollView.setAddTaskButton(tommorowAddTaskButton)
+        tomorrowScrollView.setDate(Calendar.current.date(byAdding: .day, value: 1, to: Date())!)
         
         todayChangeButton.layer.borderColor = CGColor(red: 0.21, green: 0.49, blue: 0.8, alpha: 1)
         todayChangeButton.layer.borderWidth = 2
@@ -200,9 +202,10 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        let sender = sender as! (Date, [Task])
         let dateScreenController = segue.destination as! DateScreenViewController
-        dateScreenController.tasks = sender as! [Task]
+        dateScreenController.tasks = sender.1
+        dateScreenController.forDay = sender.0
     }
     
 }

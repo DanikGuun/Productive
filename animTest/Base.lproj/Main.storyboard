@@ -237,6 +237,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRE-93-XPu" userLabel="DateLabel">
+                                <rect key="frame" x="20" y="66" width="360" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AFuturaRoundBold" family="a_FuturaRound" pointSize="24"/>
+                                <color key="textColor" red="0.21176470589999999" green="0.49019607840000001" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Plus" translatesAutoresizingMaskIntoConstraints="NO" id="YCZ-V4-h1B">
                                 <rect key="frame" x="345" y="60" width="33" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -250,7 +257,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="j9o-VX-y9t"/>
                             </scrollView>
                             <view opaque="NO" alpha="0.0" contentMode="scaleToFill" id="PQ6-9L-8O7" userLabel="Alert" customClass="EditAlertView" customModule="animTest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-5" width="393" height="852"/>
+                                <rect key="frame" x="-15" y="60" width="393" height="852"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="alertBackground" translatesAutoresizingMaskIntoConstraints="NO" id="CyV-Bd-Uql" userLabel="BackGround">
@@ -306,6 +313,7 @@
                     <navigationItem key="navigationItem" id="1Yf-Q7-Z6X"/>
                     <connections>
                         <outlet property="addTaskButton" destination="YCZ-V4-h1B" id="xdo-wq-2AU"/>
+                        <outlet property="dateLabel" destination="eRE-93-XPu" id="xjx-aT-8tx"/>
                         <outlet property="editAlert" destination="PQ6-9L-8O7" id="P6k-bf-tfG"/>
                         <outlet property="tasksScrollView" destination="cuA-9y-GHF" id="yNB-Y3-VPZ"/>
                     </connections>

@@ -31,7 +31,7 @@ class DateType: UIView{
         let task2 = Task(name: "дз", date: date, description: "заколкбало дз", isDone: false)
         let task3 = Task(name: "Vfnfy", date: date, description: "ура жопа", isDone: true)
         
-        superScroll.viewController.performSegue(withIdentifier: "DaySegue", sender: [task1, task2, task3])
+        superScroll.viewController.performSegue(withIdentifier: "DaySegue", sender: (date, [task1, task2, task3]))
     }
     
     override func layoutSubviews() {
