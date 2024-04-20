@@ -80,6 +80,11 @@ class TasksScrollView: UIScrollView{
         }
         addSubview(taskToAdd)
         
+        //анимация появления
+        taskToAdd.transform = CGAffineTransform(scaleX: 0, y: 0)
+        UIView.animate(withDuration: 0.5, animations: {
+            taskToAdd.transform = CGAffineTransform(scaleX: 1, y: 1)
+        })
     }
     
     //MARK: Task Managing
@@ -144,7 +149,7 @@ class TasksScrollView: UIScrollView{
             
             if task == taskToRemove{
                 isAfterTask = true
-                UIView.animate(withDuration: 1, animations: {
+                UIView.animate(withDuration: 0.5, animations: {
                     task.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
                 }, completion: {_ in 
                     task.removeFromSuperview()

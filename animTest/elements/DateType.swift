@@ -26,12 +26,10 @@ class DateType: UIView{
 
     @objc
     private func onClick(_ sender: Any?){
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
         
-        let task1 = Task(name: "Уроки", date: formatter.string(from: date), description: "мм деньги", isDone: false)
-        let task2 = Task(name: "дз", date: formatter.string(from: date), description: "заколкбало дз", isDone: false)
-        let task3 = Task(name: "Vfnfy", date: formatter.string(from: date), description: "ура жопа", isDone: true)
+        let task1 = Task(name: "Уроки", date: date, description: "мм деньги", isDone: false)
+        let task2 = Task(name: "дз", date: date, description: "заколкбало дз", isDone: false)
+        let task3 = Task(name: "Vfnfy", date: date, description: "ура жопа", isDone: true)
         
         superScroll.viewController.performSegue(withIdentifier: "DaySegue", sender: [task1, task2, task3])
     }
