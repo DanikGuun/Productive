@@ -1,8 +1,8 @@
 import Foundation
 
-struct Task{
+struct Task: Decodable, Encodable{
     var name: String
-    var date: Date
+    var date: String
     var description: String
-    var isDone: String
+    var isDone: Bool
 }

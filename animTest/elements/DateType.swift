@@ -26,7 +26,14 @@ class DateType: UIView{
 
     @objc
     private func onClick(_ sender: Any?){
-        superScroll.viewController.performSegue(withIdentifier: "DaySegue", sender: nil)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        
+        let task1 = Task(name: "Уроки", date: formatter.string(from: date), description: "мм деньги", isDone: false)
+        let task2 = Task(name: "дз", date: formatter.string(from: date), description: "заколкбало дз", isDone: false)
+        let task3 = Task(name: "Vfnfy", date: formatter.string(from: date), description: "ура жопа", isDone: true)
+        
+        superScroll.viewController.performSegue(withIdentifier: "DaySegue", sender: [task1, task2, task3])
     }
     
     override func layoutSubviews() {

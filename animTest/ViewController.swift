@@ -199,5 +199,11 @@ class ViewController: UIViewController {
         return TodayButton()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        let dateScreenController = segue.destination as! DateScreenViewController
+        dateScreenController.tasks = sender as! [Task]
+    }
+    
 }
     

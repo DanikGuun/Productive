@@ -13,7 +13,7 @@ class TasksScrollView: UIScrollView{
     private var addTaskButton: UIImageView!
     private var lastTask: TaskType? = nil //последняя добавленная таска
     var activeTasks = Array<TaskType>()
-    var taskEditAlert: EditAlertView!
+    var taskEditAlert: EditAlertView?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -40,7 +40,7 @@ class TasksScrollView: UIScrollView{
     @objc
     func addTaskButtonPressed(_ sender: UITapGestureRecognizer){
         var task = TaskType(superScroll: self, text: "", date: Date(), description: "", isDone: false)
-        task.setEditAlert(taskEditAlert)
+        task.setEditAlert(taskEditAlert!)
         addTask(task)
         task.taskName.becomeFirstResponder()
     }
@@ -74,6 +74,9 @@ class TasksScrollView: UIScrollView{
                                            y: activeTasks.last!.center.y + TaskType.size.height + 15)
                 activeTasks.append(taskToAdd)
             }
+        }
+        if let editAlert = taskEditAlert{
+            taskToAdd.setEditAlert(editAlert)
         }
         addSubview(taskToAdd)
         

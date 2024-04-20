@@ -13,9 +13,21 @@ class DateScreenViewController: UIViewController {
     @IBOutlet weak var addTaskButton: UIImageView!
     @IBOutlet weak var tasksScrollView: TasksScrollView!
     
+    var tasks: [Task] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tasksScrollView.setEditAlert(editAlert)
         tasksScrollView.setAddTaskButton(addTaskButton)
+        
+        generateTasks(tasks)
+    }
+    private func generateTasks(_ tasks: [Task]){
+        for task in tasks{
+            let date = DateFormatter()
+            date.dateFormat = "dd.MM.yyyy"
+            let taskToAdd = TaskType(superScroll: self.tasksScrollView, text: task.name, date: date.date(from: task.date)!, description: task.description, isDone: task.isDone)
+            tasksScrollView.addTask(taskToAdd)
+        }
     }
 }
