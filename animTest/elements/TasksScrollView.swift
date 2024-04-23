@@ -52,7 +52,6 @@ class TasksScrollView: UIScrollView{
                 task.center = CGPoint(x: task.center.x, y: task.center.y + TaskType.size.height + 15)
             }
             activeTasks.insert(taskToAdd, at: 0)
-            TasksData.shared.tasks.insert(taskToAdd, at: 0)
         }
         else{
             
@@ -64,7 +63,6 @@ class TasksScrollView: UIScrollView{
                     isAfterNotDoneTask = true
                     taskToAdd.center = task.center
                     activeTasks.insert(taskToAdd, at: id)
-                    TasksData.shared.tasks.insert(taskToAdd, at: id)
                 }
                 if isAfterNotDoneTask{
                     task.center = CGPoint(x: task.center.x, y: task.center.y + TaskType.size.height + 15)
@@ -74,12 +72,12 @@ class TasksScrollView: UIScrollView{
                 taskToAdd.center = CGPoint(x: activeTasks.last!.center.x,
                                            y: activeTasks.last!.center.y + TaskType.size.height + 15)
                 activeTasks.append(taskToAdd)
-                TasksData.shared.tasks.append(taskToAdd)
             }
         }
-        if let editAlert = taskEditAlert{
-            taskToAdd.setEditAlert(editAlert)
-        }
+        
+        if TasksData.shared.tasks.contains(taskToAdd) == false {TasksData.shared.tasks.append(taskToAdd)}
+        
+        if let editAlert = taskEditAlert {taskToAdd.setEditAlert(editAlert)}
         addSubview(taskToAdd)
         
         //анимация появления
@@ -123,8 +121,6 @@ class TasksScrollView: UIScrollView{
         activeTasks.removeAll(where: {$0 == taskToDelete})
         */
         activeTasks.insert(taskToDelete, at: firstDoneTaskId ?? activeTasks.endIndex)
-        TasksData.shared.tasks.removeAll(where: {$0 == taskToDelete})
-        TasksData.shared.tasks.insert(taskToDelete, at: firstDoneTaskId ?? activeTasks.endIndex)
         taskToDelete.animFade()
         taskToDelete.isDone = true
     }
@@ -140,8 +136,6 @@ class TasksScrollView: UIScrollView{
         
         activeTasks.removeAll(where: {$0 == taskToUndelete})
         activeTasks.insert(taskToUndelete, at: 0)
-        TasksData.shared.tasks.removeAll(where: {$0 == taskToUndelete})
-        TasksData.shared.tasks.insert(taskToUndelete, at: 0)
         taskToUndelete.animUnfade()
         taskToUndelete.isDone = false
     }
