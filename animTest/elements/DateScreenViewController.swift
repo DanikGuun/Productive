@@ -9,10 +9,10 @@ import UIKit
 
 class DateScreenViewController: UIViewController {
 
-    @IBOutlet weak var editAlert: EditAlertView!
     @IBOutlet weak var addTaskButton: UIImageView!
-    @IBOutlet weak var tasksScrollView: TasksScrollView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var editAlert: EditAlertView!
+    @IBOutlet weak var tasksScrollView: TasksScrollView!
     
     var tasks: [Task] = []
     var forDay = Date()
@@ -30,10 +30,12 @@ class DateScreenViewController: UIViewController {
         
         generateTasks(tasks)
     }
+     
     private func generateTasks(_ tasks: [Task]){
         for task in tasks{
             let taskToAdd = TaskType(superScroll: self.tasksScrollView, text: task.name, date: task.date, description: task.description, isDone: task.isDone)
             tasksScrollView.addTask(taskToAdd)
         }
     }
+
 }

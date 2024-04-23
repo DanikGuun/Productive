@@ -174,6 +174,7 @@ final class TaskType: UIView, UITextFieldDelegate{
         
         @objc
         private func radioButtonPressed(_ sender: UITapGestureRecognizer){
+
             func enable(){
                 UIButton.animate(withDuration: 0.2, animations: {
                     self.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)

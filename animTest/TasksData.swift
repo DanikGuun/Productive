@@ -7,9 +7,9 @@
 
 import Foundation
 class TasksData{
-    let shared = TasksData()
+    static let shared = TasksData()
     
     private init(){}
     
-    var tasks: [Task] = []
+    var tasks: [TaskType] = []
 }

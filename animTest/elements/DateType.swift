@@ -11,12 +11,13 @@ class DateType: UIView{
     var tasks: [TaskType] = []
     var superScroll: AllDaysScrollView!
     var dateText = UILabel()
-    let date = Date()
+    var date: Date!
     
     init(date: Date, superScroll: AllDaysScrollView) {
         super.init(frame: CGRect(x: 0, y: 0, width: DateType.size.width, height: DateType.size.height))
         self.superScroll = superScroll
         self.center = CGPoint(x: superScroll.frame.size.width  / 2, y: self.center.y+15)
+        self.date = date
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(onClick(_:)))
         self.addGestureRecognizer(tap)

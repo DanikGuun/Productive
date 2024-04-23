@@ -10,4 +10,11 @@ class JsonManager{
         catch {print(error)}
         return ""
     }
+    static func TaskToString(_ taskTypes: [TaskType]) -> String{
+        var tasks: [Task] = []
+        for task in taskTypes{
+            tasks.append(Task(name: task.taskName.text ?? "", date: task.taskDate, description: task.taskDescription, isDone: task.isDone))
+        }
+        return TaskToString(tasks)
+    }
 }
