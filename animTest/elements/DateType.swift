@@ -28,11 +28,18 @@ class DateType: UIView{
     @objc
     private func onClick(_ sender: Any?){
         
-        let task1 = Task(name: "Уроки", date: date, description: "мм деньги", isDone: false)
-        let task2 = Task(name: "дз", date: date, description: "заколкбало дз", isDone: false)
-        let task3 = Task(name: "Vfnfy", date: date, description: "ура жопа", isDone: true)
+        var tasksToSend: [TaskType] = []
         
-        superScroll.viewController.performSegue(withIdentifier: "DaySegue", sender: (date, [task1, task2, task3]))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        
+        for task in TasksData.shared.tasks{
+            if dateFormatter.string(from: task.taskDate) == dateFormatter.string(from: date){
+                tasksToSend.append(task)
+            }
+        }
+        
+        superScroll.viewController.performSegue(withIdentifier: "DaySegue", sender: (date, tasksToSend))
     }
     
     override func layoutSubviews() {

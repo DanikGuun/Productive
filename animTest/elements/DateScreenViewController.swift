@@ -14,7 +14,7 @@ class DateScreenViewController: UIViewController {
     @IBOutlet weak var editAlert: EditAlertView!
     @IBOutlet weak var tasksScrollView: TasksScrollView!
     
-    var tasks: [Task] = []
+    var tasks: [TaskType] = []
     var forDay = Date()
     
     override func viewDidLoad() {
@@ -31,11 +31,13 @@ class DateScreenViewController: UIViewController {
         generateTasks(tasks)
     }
      
-    private func generateTasks(_ tasks: [Task]){
+    private func generateTasks(_ tasks: [TaskType]){
         for task in tasks{
-            let taskToAdd = TaskType(superScroll: self.tasksScrollView, text: task.name, date: task.date, description: task.description, isDone: task.isDone)
-            tasksScrollView.addTask(taskToAdd)
+            task.setScroll(tasksScrollView)
+            tasksScrollView.addTask(task)
         }
     }
-
+    override func viewWillDisappear(_ animated: Bool) {
+        tasksScrollView.clearLastTask()
+    }
 }

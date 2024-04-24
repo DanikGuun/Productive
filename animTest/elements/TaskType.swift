@@ -19,10 +19,12 @@ final class TaskType: UIView, UITextFieldDelegate{
         super.init(coder: aDecoder)
     }
 
-    init(superScroll: TasksScrollView, text: String, date: Date, description: String, isDone: Bool) {
+    init(superScroll: TasksScrollView?, text: String, date: Date, description: String, isDone: Bool) {
         super.init(frame: CGRect(x: 0, y: 0, width: TaskType.size.width, height: TaskType.size.height))
         self.superScroll = superScroll
-        self.center = CGPoint(x: superScroll.frame.size.width  / 2, y: self.center.y+15)
+        if let superScroll{
+            self.center = CGPoint(x: superScroll.frame.size.width  / 2, y: self.center.y+15)
+        }
         self.taskName.text = text
         self.taskDate = date
         self.taskDescription = description
@@ -96,6 +98,10 @@ final class TaskType: UIView, UITextFieldDelegate{
     
     func setEditAlert(_ alert: EditAlertView){
         self.editAlert = alert
+    }
+    func setScroll(_ scroll: TasksScrollView){
+        self.superScroll = scroll
+        self.center = CGPoint(x: scroll.frame.size.width  / 2, y: self.center.y+15)
     }
     
     func animFade(){

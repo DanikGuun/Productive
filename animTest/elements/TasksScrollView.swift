@@ -11,7 +11,7 @@ import UIKit
 class TasksScrollView: UIScrollView{
     
     private var addTaskButton: UIImageView!
-    private var lastTask: TaskType? = nil //последняя добавленная таска
+    var lastTask: TaskType? = nil //последняя добавленная таска
     var activeTasks = Array<TaskType>()
     var taskEditAlert: EditAlertView?
     var forDate: Date!
@@ -31,10 +31,7 @@ class TasksScrollView: UIScrollView{
     }
     
     private func create(){
-        let bol: [Bool] = [true, false]
-        for label in ["убраться на столе", "разобрать посудомойку", "принять ванну", "поучиться рисовать", "вытереть пыль в комнате родителей", "почитать книгу"]{
-            addTask(TaskType(superScroll: self, text: label, date: Date(), description: "", isDone: bol.randomElement()!))
-        }
+
     }
     
     // MARK: - Tasks
@@ -47,6 +44,7 @@ class TasksScrollView: UIScrollView{
     }
     
     func addTask(_ taskToAdd: TaskType){
+        taskToAdd.setScroll(self)
         if taskToAdd.isDone == false || activeTasks.isEmpty{//ставим неготовый таск наверх или если тасков нет
             for task in activeTasks{
                 task.center = CGPoint(x: task.center.x, y: task.center.y + TaskType.size.height + 15)
@@ -113,13 +111,17 @@ class TasksScrollView: UIScrollView{
             }
         }
 
-        taskToDelete.animSnapTo(point: activeTasksCenters[ (firstDoneTaskId ?? self.activeTasks.endIndex)-1 ])
+        print((firstDoneTaskId ?? self.activeTasks.endIndex)-1)
+        if firstDoneTaskId == 0{
+            taskToDelete.animSnapTo(point: activeTasksCenters[0])
+        }
+        else{
+            taskToDelete.animSnapTo(point: activeTasksCenters[ (firstDoneTaskId ?? self.activeTasks.endIndex)-1 ])
+        }
 
         
         //перемещаем таски в массиве, текущую в начало готовых
-        /*
         activeTasks.removeAll(where: {$0 == taskToDelete})
-        */
         activeTasks.insert(taskToDelete, at: firstDoneTaskId ?? activeTasks.endIndex)
         taskToDelete.animFade()
         taskToDelete.isDone = true
@@ -161,6 +163,11 @@ class TasksScrollView: UIScrollView{
         }
         self.contentSize = CGSize(width: self.contentSize.width, height: self.contentSize.height - TaskType.size.height - 15)
         activeTasks.removeAll(where: {$0 == taskToRemove})
+    }
+    
+    func clearLastTask(){
+        self.lastTask = nil
+        activeTasks.map {$0.center = CGPoint(x: 0, y: 0)}
     }
     
     func setDate(_ date: Date){

@@ -36,6 +36,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let task = TaskType(superScroll: nil, text: "Задача", date: Calendar.current.date(byAdding: .day, value: 3, to: Date())!, description: "Суперзадача", isDone: true)
+        
+        TasksData.shared.tasks.append(task)
+        
         todayScrollView.setEditAlert(editAlert)
         todayScrollView.setAddTaskButton(todayAddTaskButton)
         todayScrollView.setDate(Date())
@@ -202,7 +206,7 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let sender = sender as! (Date, [Task])
+        let sender = sender as! (Date, [TaskType])
         let dateScreenController = segue.destination as! DateScreenViewController
         dateScreenController.tasks = sender.1
         dateScreenController.forDay = sender.0

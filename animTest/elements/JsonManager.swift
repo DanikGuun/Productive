@@ -17,4 +17,16 @@ class JsonManager{
         }
         return TaskToString(tasks)
     }
+    static func StringToTasks(_ str: String) -> [TaskType]{
+        var taskTypes: [TaskType] = []
+        do{
+            let tasks = try JSONDecoder().decode([Task].self, from: str.data(using: .utf8)!)
+            for task in tasks{
+                taskTypes.append(TaskType(superScroll: nil, text: task.name, date: task.date, description: task.description, isDone: task.isDone))
+            }
+            return taskTypes
+        }
+        catch {print(error)}
+        return taskTypes
+    }
 }
