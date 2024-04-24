@@ -37,7 +37,7 @@ class DateScreenViewController: UIViewController {
             tasksScrollView.addTask(task)
         }
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         tasksScrollView.clearLastTask()
     }
 }

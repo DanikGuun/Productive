@@ -22,9 +22,6 @@ final class TaskType: UIView, UITextFieldDelegate{
     init(superScroll: TasksScrollView?, text: String, date: Date, description: String, isDone: Bool) {
         super.init(frame: CGRect(x: 0, y: 0, width: TaskType.size.width, height: TaskType.size.height))
         self.superScroll = superScroll
-        if let superScroll{
-            self.center = CGPoint(x: superScroll.frame.size.width  / 2, y: self.center.y+15)
-        }
         self.taskName.text = text
         self.taskDate = date
         self.taskDescription = description
@@ -49,8 +46,10 @@ final class TaskType: UIView, UITextFieldDelegate{
     }
     
     func updateTask(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
         taskName.text = editAlert.taskNameField.text
-        if taskDate != editAlert.taskDatePicker.date{
+        if dateFormatter.string(from: taskDate) != dateFormatter.string(from: editAlert.taskDatePicker.date){
             superScroll?.removeTask(self)
         }
         taskDate = editAlert.taskDatePicker.date
@@ -180,7 +179,6 @@ final class TaskType: UIView, UITextFieldDelegate{
         
         @objc
         private func radioButtonPressed(_ sender: UITapGestureRecognizer){
-            print(TasksData.shared.tasks.count)
             func enable(){
                 UIButton.animate(withDuration: 0.2, animations: {
                     self.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)

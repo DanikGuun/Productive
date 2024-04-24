@@ -35,6 +35,7 @@ class DateType: UIView{
         
         for task in TasksData.shared.tasks{
             if dateFormatter.string(from: task.taskDate) == dateFormatter.string(from: date){
+                task.center = CGPoint(x: superScroll.frame.size.width / 2, y: 15)
                 tasksToSend.append(task)
             }
         }

@@ -50,7 +50,6 @@
 		56CB0EB72BCD185F0044F19B /* DateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateType.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		56D3F9BB2BAD852B005A4E1C /* TaskType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskType.swift; sourceTree = "<group>"; };
 		56F4243D2BC67CE700A376F3 /* EditAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlertView.swift; sourceTree = "<group>"; };
-		56F7D1AB2BD55833007D62A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +219,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				56B0548C2B9A40C800F8E148 /* Base */,
-				56F7D1AB2BD55833007D62A8 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

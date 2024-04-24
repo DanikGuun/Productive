@@ -37,7 +37,7 @@ class TasksScrollView: UIScrollView{
     // MARK: - Tasks
     @objc
     func addTaskButtonPressed(_ sender: UITapGestureRecognizer){
-        let task = TaskType(superScroll: self, text: "", date: Date(), description: "", isDone: false)
+        let task = TaskType(superScroll: self, text: "", date: forDate, description: "", isDone: false)
         task.setEditAlert(taskEditAlert!)
         addTask(task)
         task.taskName.becomeFirstResponder()
@@ -111,7 +111,6 @@ class TasksScrollView: UIScrollView{
             }
         }
 
-        print((firstDoneTaskId ?? self.activeTasks.endIndex)-1)
         if firstDoneTaskId == 0{
             taskToDelete.animSnapTo(point: activeTasksCenters[0])
         }
@@ -167,7 +166,6 @@ class TasksScrollView: UIScrollView{
     
     func clearLastTask(){
         self.lastTask = nil
-        activeTasks.map {$0.center = CGPoint(x: 0, y: 0)}
     }
     
     func setDate(_ date: Date){
