@@ -85,6 +85,7 @@ class ViewController: UIViewController {
 
     @objc
     private func todayButtonPressed(_ sender: UITapGestureRecognizer){
+        allDaysScrollView.clearDates() //Mark: dfsdf
         let tappedImage = sender.view as! UIImageView
         let target = (getMenuElementByButton(tappedImage) as! TodayButton).currentDay == .today ? todayParentView : tomorrowParentView
         changeScrollView(currentScrollView: currentScrollID, targetScrollView: target!, currentIndex: scrollViewsIndexes[currentScrollID]!, targetIndex: scrollViewsIndexes[target!]!)
@@ -126,6 +127,8 @@ class ViewController: UIViewController {
     }
     @objc
     private func allDayButtonPressed(_ sender: UITapGestureRecognizer){
+        //Mark: dfsdf
+        allDaysScrollView.addDates()
         let tappedImage = sender.view as! UIImageView
         changeScrollView(currentScrollView: currentScrollID, targetScrollView: allDaysParentView, currentIndex: scrollViewsIndexes[currentScrollID]!, targetIndex: scrollViewsIndexes[allDaysParentView]!)
         menuButtonEnabledAnimate(getMenuElementByButton(tappedImage))

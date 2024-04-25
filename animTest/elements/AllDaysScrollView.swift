@@ -4,11 +4,6 @@ import UIKit
 class AllDaysScrollView: UIScrollView{
     required init?(coder: NSCoder){
         super.init(coder: coder)
-        addDate(date: Date())
-        for i in 1...10{
-            let date_ = Date()
-            addDate(date: Calendar.current.date(byAdding: .day, value: i, to: date_)!)
-        }
     }
     
     var lastDateType: DateType?
@@ -16,6 +11,28 @@ class AllDaysScrollView: UIScrollView{
     
     override func layoutSubviews() {
         super.layoutSubviews()
+    }
+    
+    func addDates(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        var dates: [String] = []
+        for task in TasksData.shared.tasks{
+            //если даты еще нет и она не завтра сегодня
+            if dates.contains(dateFormatter.string(from: task.taskDate)) == false &&
+                dateFormatter.string(from: task.taskDate) != dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: 1, to: Date())!) &&
+                dateFormatter.string(from: task.taskDate) != dateFormatter.string(from: Date()){
+                
+                    dates.append(dateFormatter.string(from: task.taskDate))
+                    addDate(date: task.taskDate)
+            }
+        }
+    }
+    
+    func clearDates(){
+        for view in self.subviews{
+            view.removeFromSuperview()
+        }
     }
     
     func addDate(date: Date){
