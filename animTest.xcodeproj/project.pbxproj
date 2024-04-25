@@ -31,7 +31,7 @@
 /* Begin PBXFileReference section */
 		560E33832BCD9DAC000B8C44 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		56237F8D2BCEC55800E9E113 /* DateScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScreenViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
-		568D86ED2B9AE06D0039A980 /* bloggersans-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bloggersans-medium.ttf"; path = "../../../../../Library/Fonts/bloggersans-medium.ttf"; sourceTree = "<group>"; };
+		568D86ED2B9AE06D0039A980 /* bloggersans-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "bloggersans-medium.ttf"; path = "../../../Library/Fonts/bloggersans-medium.ttf"; sourceTree = SOURCE_ROOT; };
 		56A076B22BD845A600FB96C0 /* UserDefaultsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHandler.swift; sourceTree = "<group>"; };
 		56AD92692BAD71BB003AE816 /* TasksScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TasksScrollView.swift; sourceTree = "<group>"; };
 		56ADE92B2BD2561400B29007 /* JsonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonManager.swift; sourceTree = "<group>"; wrapsLines = 1; };
@@ -44,7 +44,7 @@
 		56B054912B9A40C900F8E148 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		56B054932B9A40C900F8E148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56B207382B9AFDCB005BFE10 /* MenuElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuElement.swift; sourceTree = "<group>"; };
-		56B239BD2B9A541300B73474 /* afuturaroundbold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = afuturaroundbold.ttf; sourceTree = "<group>"; };
+		56B239BD2B9A541300B73474 /* afuturaroundbold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = afuturaroundbold.ttf; path = animTest/fonts/afuturaroundbold.ttf; sourceTree = SOURCE_ROOT; };
 		56BF349A2BD4327A00F0CB5F /* TasksData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksData.swift; sourceTree = "<group>"; };
 		56CB0EB52BCD15DC0044F19B /* AllDaysScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDaysScrollView.swift; sourceTree = "<group>"; };
 		56CB0EB72BCD185F0044F19B /* DateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateType.swift; sourceTree = "<group>"; wrapsLines = 0; };

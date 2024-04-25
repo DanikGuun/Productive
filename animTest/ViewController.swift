@@ -85,7 +85,6 @@ class ViewController: UIViewController {
 
     @objc
     private func todayButtonPressed(_ sender: UITapGestureRecognizer){
-        allDaysScrollView.clearDates() //Mark: dfsdf
         let tappedImage = sender.view as! UIImageView
         let target = (getMenuElementByButton(tappedImage) as! TodayButton).currentDay == .today ? todayParentView : tomorrowParentView
         changeScrollView(currentScrollView: currentScrollID, targetScrollView: target!, currentIndex: scrollViewsIndexes[currentScrollID]!, targetIndex: scrollViewsIndexes[target!]!)
@@ -127,7 +126,6 @@ class ViewController: UIViewController {
     }
     @objc
     private func allDayButtonPressed(_ sender: UITapGestureRecognizer){
-        //Mark: dfsdf
         allDaysScrollView.addDates()
         let tappedImage = sender.view as! UIImageView
         changeScrollView(currentScrollView: currentScrollID, targetScrollView: allDaysParentView, currentIndex: scrollViewsIndexes[currentScrollID]!, targetIndex: scrollViewsIndexes[allDaysParentView]!)
@@ -135,17 +133,28 @@ class ViewController: UIViewController {
     }
     
     private func changeScrollView(currentScrollView: UIView, targetScrollView: UIView, currentIndex: Int, targetIndex: Int){
+        func clearAllDays(){
+            if targetScrollView != allDaysParentView {
+                self.allDaysScrollView.clearDates()
+            }
+        }
+        
         if currentIndex  < targetIndex{ //окошко влево
             UIScrollView.animate(withDuration: 0.6, animations: {
                 currentScrollView.center.x -= currentScrollView.frame.width * 2 //поменять на ширину вьюхи
                 targetScrollView.center.x = targetScrollView.frame.width / 2
+            }, completion: { _ in
+                clearAllDays()
             })
         }
         else{
             UIScrollView.animate(withDuration: 0.6, animations: {
                 currentScrollView.center.x += currentScrollView.frame.width * 2 //поменять на ширину вьюхи
                 targetScrollView.center.x = targetScrollView.frame.width / 2
-            })
+            }, completion: { _ in
+                    clearAllDays()
+                }
+            )
         }
         currentScrollID = targetScrollView
     }

@@ -141,7 +141,8 @@ class TasksScrollView: UIScrollView{
         taskToUndelete.isDone = false
     }
     
-    func removeTask(_ taskToRemove: TaskType){
+    func removeTask(_ taskToRemove: TaskType?){
+        guard let taskToRemove else {return}
         let activeTasksCenters = activeTasks.map {$0.center}
         var isAfterTask = false //чтобы получить все таски после удаляемого
         

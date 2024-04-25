@@ -24,15 +24,17 @@ class AllDaysScrollView: UIScrollView{
                 dateFormatter.string(from: task.taskDate) != dateFormatter.string(from: Date()){
                 
                     dates.append(dateFormatter.string(from: task.taskDate))
-                    addDate(date: task.taskDate)
             }
         }
+        dates.sort()
+        dates.map{addDate(date: dateFormatter.date(from: $0)!)}
     }
     
     func clearDates(){
         for view in self.subviews{
             view.removeFromSuperview()
         }
+        lastDateType = nil
     }
     
     func addDate(date: Date){
