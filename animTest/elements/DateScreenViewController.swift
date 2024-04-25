@@ -29,7 +29,6 @@ class DateScreenViewController: UIViewController {
         
         tasksScrollView.setDate(forDay)
         
-        generateTasks(tasks)
     }
      
     private func generateTasks(_ tasks: [TaskType]){

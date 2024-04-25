@@ -27,6 +27,7 @@ class AllDaysScrollView: UIScrollView{
             }
         }
         dates.sort()
+        dates.reverse()
         dates.map{addDate(date: dateFormatter.date(from: $0)!)}
     }
     

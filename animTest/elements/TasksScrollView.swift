@@ -19,22 +19,20 @@ class TasksScrollView: UIScrollView{
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        create()
 
     }
     
     init (){
         super.init(frame: CGRect(x: 0, y: 0, width: .max, height: .max))
-        create()
     }
     override func layoutSubviews() {
         super.layoutSubviews()
     }
     
-    private func create(){
-
+    func generateTasks(){
+        
     }
-    
+
     // MARK: - Tasks
     @objc
     func addTaskButtonPressed(_ sender: UITapGestureRecognizer){
@@ -180,8 +178,20 @@ class TasksScrollView: UIScrollView{
     }
     
     func setDate(_ date: Date){
+        //делаем генерацию
         self.forDate = date
         activeTasks.map {$0.taskDate = date}
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        
+        let strDate = dateFormatter.string(from: date)
+        
+        for task in TasksData.shared.tasks{
+            if dateFormatter.string(from: task.taskDate) == strDate{
+                self.addTask(task)
+            }
+        }
     }
     //MARK: setAlerts
     func setEditAlert(_ alert: EditAlertView){
@@ -192,5 +202,19 @@ class TasksScrollView: UIScrollView{
         self.addTaskButton = button
         let tap = UITapGestureRecognizer(target: self, action: #selector(addTaskButtonPressed(_:)))
         self.addTaskButton.addGestureRecognizer(tap)
+    }
+    
+    func updateTasks(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateStr = dateFormatter.string(from: forDate)
+        
+        for task in TasksData.shared.tasks{
+            if activeTasks.contains(task) == false && dateFormatter.string(from: task.taskDate) == dateStr{
+                self.addTask(TaskType(superScroll: self, text: task.taskName.text ?? "",
+                                      date: forDate, description: task.taskDescription, isDone: task.isDone))
+                TasksData.shared.tasks.removeAll(where: {$0 == task})
+            }
+        }
     }
 }

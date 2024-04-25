@@ -86,6 +86,8 @@ class ViewController: UIViewController {
 
     @objc
     private func todayButtonPressed(_ sender: UITapGestureRecognizer){
+        todayScrollView.updateTasks()
+        tomorrowScrollView.updateTasks()
         UserDefaultsHandler.SaveData(str: JsonManager.TaskToString(TasksData.shared.tasks))
         let tappedImage = sender.view as! UIImageView
         let target = (getMenuElementByButton(tappedImage) as! TodayButton).currentDay == .today ? todayParentView : tomorrowParentView
@@ -95,6 +97,8 @@ class ViewController: UIViewController {
     
     @objc
     private func todayChangeButtonPressed(_ sender: UIGestureRecognizer){
+        todayScrollView.updateTasks()
+        tomorrowScrollView.updateTasks()
         let todayButton: TodayButton = getMenuElementByButton(sender.view!)
         let labelHeight = todayButton.label.frame.height //чтобы помнить высоту после обнуления
         
@@ -132,6 +136,8 @@ class ViewController: UIViewController {
         let tappedImage = sender.view as! UIImageView
         changeScrollView(currentScrollView: currentScrollID, targetScrollView: allDaysParentView, currentIndex: scrollViewsIndexes[currentScrollID]!, targetIndex: scrollViewsIndexes[allDaysParentView]!)
         menuButtonEnabledAnimate(getMenuElementByButton(tappedImage))
+        todayScrollView.updateTasks()
+        tomorrowScrollView.updateTasks()
     }
     
     private func changeScrollView(currentScrollView: UIView, targetScrollView: UIView, currentIndex: Int, targetIndex: Int){
