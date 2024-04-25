@@ -87,12 +87,12 @@
 				56B054852B9A40C800F8E148 /* AppDelegate.swift */,
 				56B054872B9A40C800F8E148 /* SceneDelegate.swift */,
 				56B054892B9A40C800F8E148 /* ViewController.swift */,
+				56A076B22BD845A600FB96C0 /* UserDefaultsHandler.swift */,
 				56B0548B2B9A40C800F8E148 /* Main.storyboard */,
 				56B0548E2B9A40C900F8E148 /* Assets.xcassets */,
 				56B054902B9A40C900F8E148 /* LaunchScreen.storyboard */,
 				56B054932B9A40C900F8E148 /* Info.plist */,
 				56B239BF2B9A542100B73474 /* fonts */,
-				56A076B22BD845A600FB96C0 /* UserDefaultsHandler.swift */,
 			);
 			path = animTest;
 			sourceTree = "<group>";

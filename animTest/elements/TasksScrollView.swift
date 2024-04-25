@@ -15,6 +15,7 @@ class TasksScrollView: UIScrollView{
     var activeTasks = Array<TaskType>()
     var taskEditAlert: EditAlertView?
     var forDate: Date!
+    var viewController: UIViewController!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -83,6 +84,7 @@ class TasksScrollView: UIScrollView{
         UIView.animate(withDuration: 0.5, animations: {
             taskToAdd.transform = CGAffineTransform(scaleX: 1, y: 1)
         })
+        UserDefaultsHandler.SaveData(str: JsonManager.TaskToString(TasksData.shared.tasks))
     }
     
     
@@ -124,6 +126,7 @@ class TasksScrollView: UIScrollView{
         activeTasks.insert(taskToDelete, at: firstDoneTaskId ?? activeTasks.endIndex)
         taskToDelete.animFade()
         taskToDelete.isDone = true
+        UserDefaultsHandler.SaveData(str: JsonManager.TaskToString(TasksData.shared.tasks))
     }
     func undeleteTask(_ taskToUndelete: TaskType){
         let activeTasksCenters = activeTasks.map { $0.center }
@@ -139,6 +142,7 @@ class TasksScrollView: UIScrollView{
         activeTasks.insert(taskToUndelete, at: 0)
         taskToUndelete.animUnfade()
         taskToUndelete.isDone = false
+        UserDefaultsHandler.SaveData(str: JsonManager.TaskToString(TasksData.shared.tasks))
     }
     
     func removeTask(_ taskToRemove: TaskType?){
@@ -163,10 +167,16 @@ class TasksScrollView: UIScrollView{
         }
         self.contentSize = CGSize(width: self.contentSize.width, height: self.contentSize.height - TaskType.size.height - 15)
         activeTasks.removeAll(where: {$0 == taskToRemove})
+        UserDefaultsHandler.SaveData(str: JsonManager.TaskToString(TasksData.shared.tasks))
     }
     
     func clearLastTask(){
         self.lastTask = nil
+    }
+    
+    func setViewController(_ viewController: UIViewController){
+        self.viewController = viewController
+        taskEditAlert?.viewController = viewController
     }
     
     func setDate(_ date: Date){

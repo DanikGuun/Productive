@@ -32,5 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func applicationWillTerminate(_ application: UIApplication) {
+        UserDefaultsHandler.SaveData(str: JsonManager.TaskToString(TasksData.shared.tasks))
+    }
+
+    func applicationWillResignActive(_ application: UIApplication) {
+        UserDefaultsHandler.SaveData(str: JsonManager.TaskToString(TasksData.shared.tasks))
+    }
 }
 

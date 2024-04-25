@@ -36,16 +36,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let task = TaskType(superScroll: nil, text: "Задача", date: Calendar.current.date(byAdding: .day, value: 3, to: Date())!, description: "Суперзадача", isDone: true)
-        
-        TasksData.shared.tasks.append(task)
+        //загрузка
+        TasksData.shared.tasks = JsonManager.StringToTasks(UserDefaultsHandler.ReadData())
         
         todayScrollView.setEditAlert(editAlert)
         todayScrollView.setAddTaskButton(todayAddTaskButton)
         todayScrollView.setDate(Date())
+        todayScrollView.setViewController(self)
         tomorrowScrollView.setEditAlert(editAlert)
         tomorrowScrollView.setAddTaskButton(tommorowAddTaskButton)
         tomorrowScrollView.setDate(Calendar.current.date(byAdding: .day, value: 1, to: Date())!)
+        tomorrowScrollView.setViewController(self)
         
         todayChangeButton.layer.borderColor = CGColor(red: 0.21, green: 0.49, blue: 0.8, alpha: 1)
         todayChangeButton.layer.borderWidth = 2
@@ -85,6 +86,7 @@ class ViewController: UIViewController {
 
     @objc
     private func todayButtonPressed(_ sender: UITapGestureRecognizer){
+        UserDefaultsHandler.SaveData(str: JsonManager.TaskToString(TasksData.shared.tasks))
         let tappedImage = sender.view as! UIImageView
         let target = (getMenuElementByButton(tappedImage) as! TodayButton).currentDay == .today ? todayParentView : tomorrowParentView
         changeScrollView(currentScrollView: currentScrollID, targetScrollView: target!, currentIndex: scrollViewsIndexes[currentScrollID]!, targetIndex: scrollViewsIndexes[target!]!)
@@ -156,6 +158,7 @@ class ViewController: UIViewController {
                 }
             )
         }
+        UserDefaultsHandler.SaveData(str: JsonManager.TaskToString(TasksData.shared.tasks))
         currentScrollID = targetScrollView
     }
     private func disableMenuButtons(without: UIImageView){

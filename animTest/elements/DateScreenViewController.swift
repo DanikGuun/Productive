@@ -21,6 +21,7 @@ class DateScreenViewController: UIViewController {
         super.viewDidLoad()
         tasksScrollView.setEditAlert(editAlert)
         tasksScrollView.setAddTaskButton(addTaskButton)
+        tasksScrollView.setViewController(self)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"

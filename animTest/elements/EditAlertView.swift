@@ -8,6 +8,8 @@ class EditAlertView: UIView{
     var taskDescriptionField: UITextField!
     var deleteButton: UIButton!
     
+    var viewController: UIViewController!
+    
     var editableTask: TaskType?
     
     required init?(coder: NSCoder) {
@@ -37,18 +39,19 @@ class EditAlertView: UIView{
     }
     
     @objc func requestTaskDelete(_ sender: UITapGestureRecognizer){
+        print(1)
         let alert = UIAlertController(title: "Вай биля удалять буш?", message: nil, preferredStyle: .actionSheet)
         
-        let confirm = UIAlertAction(title: "Да", style: .destructive) {_ in self.deleteTask()}
+        let confirm = UIAlertAction(title: "Да", style: .destructive) {_ in
+            self.deleteTask()
+            self.hide(nil)
+        }
         let disagree = UIAlertAction(title: "Нет", style: .default)
         
         alert.addAction(disagree)
         alert.addAction(confirm)
         
-        let viewController = UIApplication.shared.keyWindow?.rootViewController
-        viewController?.present(alert, animated: true)
-        
-        hide(nil)
+        viewController.present(alert, animated: true)
     }
     
     func deleteTask(){
@@ -79,4 +82,8 @@ class EditAlertView: UIView{
         self.endEditing(true)
     }
     func show(){self.alpha = 1}
+    
+    func setViewController(_ viewController: UIViewController){
+        self.viewController = viewController
+    }
 }
